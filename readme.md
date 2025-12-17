@@ -1,7 +1,7 @@
 <p align="center">
   <img src="backend/assets/logo.png" width="120" />
 </p>
-
+test
 
 # BMSCE College Events Portal
 
