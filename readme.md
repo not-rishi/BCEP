@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="backend/assets/logo.png" width="120" />
+</p>
+
+
 # BMSCE College Events Portal
 
 A centralized web platform to streamline **event management and discovery** for **BMSCE clubs**.  
