@@ -1,0 +1,28 @@
+// Mapping of branch codes to full branch names during account creation
+
+module.exports = {
+  CS: "Computer Science and Engineering",
+  IS: "Information Science and Engineering",
+  EC: "Electronics and Communication Engineering",
+  CI: "Computer Science (AIML)",
+  AI: "Artificial Intelligence and Machine Learning (AIML)",
+  CD: "Computer Science Data Science",
+  AD: "Artificial Intelligence and Data Science (AIDS)",
+  IC: "Computer Science (IOT and Cybersecurity)",
+  CY: "Computer Science & Engineering (Cyber Security)",
+  BT: "Biotechnology",
+  ME: "Mechanical Engineering",
+  AE: "Aerospace Engineering",
+  EE: "Electrical and Electronics Engineering (EEE)",
+  CV: "Civil Engineering",
+  CH: "Chemical Engineering",
+  RI: "Robotics and Artificial Intelligence",
+  VD: "Electronics Engineering (VLSI Design & Technology)",
+  ET: "Electronics and Telecommunication Engineering",
+  EI: "Electronics and Instrumentation Engineering",
+  CB: "Computer Science and Business System (CSBS)",
+  CG: "Computer Science & Design",
+  MD: "Medical Electronics Engineering",
+  AU: "Automobile Engineering",
+  IM: "Industrial Engineering & Management",
+};
