@@ -1,3 +1,5 @@
+// Rate limiting email requests to prevent abuse
+
 const rateStore = {}; // { identifier: { count, expiry } }
 
 module.exports = function checkEmailRateLimit(identifier) {
