@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Create Account</title>
+    <link rel="icon" type="image/png" href="../../../Data/Images/logo.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      html,
+      body {
+        height: 100%;
+        font-family: "Poppins", sans-serif;
+        background-color: black;
+        color: white;
+        overflow-x: hidden;
+        justify-content: center;
+        align-items: center;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      img {
+  -webkit-user-drag: none; 
+  -webkit-touch-callout: none;
+}
+
+button, a, .theme-event-card, .filter-btn {
+ 
+  touch-action: manipulation;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+      body {
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+      }
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .header img {
+        height: 25px;
+        width: 25px;
+        margin-right: 5px;
+      }
+      .header h2 {
+        font-weight: 100;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.2);
+      }
+      #welcome-gif {
+        margin-top: 100px;
+        margin-bottom: 50px;
+        width: 500px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+      }
+      .container h2 {
+        color: gray;
+        font-weight: 100;
+        margin-bottom: 100px;
+      }
+
+      .btn {
+        width: 250px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #00000000;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 1s ease-in-out, background-color 0.5s ease-in-out;
+      }
+
+      .btn:hover {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6),
+          0 0 60px rgba(255, 255, 255, 0.5), 0 0 90px rgba(255, 255, 255, 0.4);
+      }
+      .btn:hover span {
+        background: linear-gradient(
+          90deg,
+          hsl(0, 70%, 80%),
+          hsl(30, 70%, 80%),
+          hsl(60, 70%, 80%),
+          hsl(90, 70%, 80%),
+          hsl(120, 70%, 80%),
+          hsl(150, 70%, 80%),
+          hsl(180, 70%, 80%),
+          hsl(210, 70%, 80%),
+          hsl(240, 70%, 80%),
+          hsl(270, 70%, 80%),
+          hsl(300, 70%, 80%),
+          hsl(330, 70%, 80%),
+          hsl(360, 70%, 80%)
+        );
+        font-weight: 500;
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .btn span {
+        position: relative;
+        z-index: 2;
+        color: rgb(255, 255, 255);
+        font-size: 25px;
+        font-weight: 200;
+        background: linear-gradient(
+          90deg,
+          hsl(0, 70%, 80%),
+          hsl(30, 70%, 80%),
+          hsl(60, 70%, 80%),
+          hsl(90, 70%, 80%),
+          hsl(120, 70%, 80%),
+          hsl(150, 70%, 80%),
+          hsl(180, 70%, 80%),
+          hsl(210, 70%, 80%),
+          hsl(240, 70%, 80%),
+          hsl(270, 70%, 80%),
+          hsl(300, 70%, 80%),
+          hsl(330, 70%, 80%),
+          hsl(360, 70%, 80%)
+        );
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 8s linear infinite;
+        text-decoration: none;
+      }
+      @keyframes flow {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .header img {
+          height: 20px;
+          width: 20px;
+        }
+
+        .header h2 {
+          font-size: 16px;
+        }
+
+        #welcome-gif {
+          width: 250px;
+          margin-top: 60px;
+          margin-bottom: 40px;
+        }
+
+        .container h2 {
+          font-size: 18px;
+          margin-bottom: 60px;
+          text-align: center;
+        }
+
+        .btn {
+          width: 90%;
+          max-width: 280px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+        }
+
+        .btn span {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body id="vanta-bg">
+    <script src="../../../config.js"></script>
+    <div class="header">
+      <img src="../../../Data/Images/logo.png" alt="Logo" width="50px" />
+      <h2>BMSCE EVENTS</h2>
+    </div>
+    <div class="container">
+      <div id="welcome-gif"></div>
+      <h2>Account Created successfully!</h2>
+      <button
+        type="submit"
+        onclick="window.location.href='../login.html'"
+        class="btn"
+      >
+        <span>Continue to Login</span>
+      </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <script>
+      const stopTime = 4.5; // time in seconds where animation should stop
+      const animation = lottie.loadAnimation({
+        container: document.getElementById("welcome-gif"),
+        renderer: "svg",
+        loop: false,
+        autoplay: true,
+        path: "welcome.json",
+      });
+      animation.addEventListener("DOMLoaded", () => {
+        const fps = animation.frameRate;
+
+        const frameToStop = stopTime * fps;
+        animation.setSpeed(0.5);
+        animation.play();
+        animation.addEventListener("enterFrame", () => {
+          const currentFrame = animation.currentFrame;
+          if (currentFrame >= frameToStop) {
+            animation.goToAndStop(frameToStop, true);
+          }
+        });
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <script>
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x939393,
+        backgroundColor: 0x0,
+        points: 9.0,
+        spacing: 17.0,
+      });
+    </script>
+  </body>
+</html>
