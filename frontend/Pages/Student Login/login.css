@@ -1,0 +1,608 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+img {
+  -webkit-user-drag: none; 
+  -webkit-touch-callout: none;
+}
+
+button, a, .theme-event-card, .filter-btn {
+ 
+  touch-action: manipulation;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+:root {
+  --master-grad: linear-gradient(
+    270deg,
+    #ffffff,
+    #00c6ff,
+    #0072ff,
+    #00e5ff,
+    #ffffff,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    white
+  );
+  --blue-grad: linear-gradient(
+    90deg,
+    #ffffff,
+    #00c6ff,
+    #0072ff,
+    #00e5ff,
+    #ffffff
+  );
+
+  --orange-grad: linear-gradient(
+    90deg,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    white
+  );
+
+  --blue-pulse-nav: linear-gradient(
+    90deg,
+    #ffffff,
+    #00c6ff,
+    #0072ff,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    #00e5ff,
+    #00c6ff,
+    #ffffff
+  );
+
+  ----orange-pulse-nav: linear-gradient(
+    90deg,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    white,
+    rgb(245, 245, 110),
+    orange
+  );
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f0f;       
+}
+::-webkit-scrollbar-thumb {
+  background: #333;          
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+}
+#vanta-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+#loginMessage {
+ 
+  min-height: 22px; 
+  margin-top: 3px;
+  font-size: 14px;
+  text-align: center;
+  
+ 
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html,
+body {
+  min-height: 100%;
+  font-family: "Poppins", sans-serif;
+  color: white;
+ 
+  overflow-x: hidden;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;     
+  display: block;
+}
+
+
+
+.nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav {
+  position: relative;
+  width: 80%;
+  height: 64px;
+  margin-top: 0px;
+  border-radius: 50px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--blue-pulse-nav);
+  background-size: 600% 600%;
+  animation: nav-flow 8s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+}
+nav::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: black;
+  border-radius: calc(50px - 3px);
+  z-index: 1;
+}
+nav:hover {
+  box-shadow: 0 0 25px #00c6ff, 0 0 50px #0072ff;
+}
+.logo {
+  height: 40px;
+  z-index: 2;
+}
+.nav-left a {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.nav-right a {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 20px;
+  margin-right: 25px;
+  font-weight: bold;
+}
+.nav-right a:hover {
+  background: linear-gradient(
+    270deg,
+    #ffffff,
+    #00c6ff,
+    #0072ff,
+    #00e5ff,
+    #ffffff
+  );
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+}
+
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(128, 128, 128, 0.7);
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.footer-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 5px;
+}
+
+.footer img {
+  height: 15px;
+  width: 15px;
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes nav-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  margin-top: 30px;
+  background-color: rgba(0, 0, 0,0.7);
+  padding: 10px 40px 0px 40px;
+  border-radius: 50px;
+  padding-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card h2 {
+  margin-top: 1.2rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  font-size: 40px;
+  background: var(--blue-grad);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  background: linear-gradient(270deg, gray, white, gray, white);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #272626;
+  border: none;
+  font-size: 1rem;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.actions a {
+  font-size: 0.9rem;
+  background: var(--blue-grad);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+  transition: transform 0.2s ease-in-out;
+}
+
+.actions a:hover {
+  transform: scale(1.2);
+}
+
+.btn {
+  width: 150px;
+  padding: 0.7rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: block;
+  margin: 0 auto;
+  margin-top: px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out,
+    transform 0.4s ease-in-out;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--blue-grad);
+  background-size: 600% 600%;
+  animation: flow 8s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: rgb(17, 17, 17);
+  border-radius: 6px;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 25px #00c6ff, 0 0 50px #0072ff;
+  background-color: #00b4ff;
+}
+.btn:hover::after {
+  opacity: 0;
+}
+.btn:hover span {
+  background: rgb(66, 50, 241);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.btn span {
+  position: relative;
+  z-index: 2;
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(270deg, #00c6ff, #ffffff, #00e5ff);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+  text-decoration: none;
+}
+
+.create-account {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  margin-bottom: 0px;
+}
+.create-account P {
+  background: linear-gradient(270deg, gray, white, gray, white);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+}
+
+.create-account a {
+  display: inline-block;
+  color: #007bff;
+  text-decoration: none;
+  background: var(--blue-grad);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+  transition: transform 0.2s ease-in-out;
+}
+
+.create-account a:hover {
+  transform: scale(1.2);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  filter: invert(0.4);
+  transform: translateY(-50%);
+  width: 22px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.eye-icon:hover {
+  transform: translateY(-50%) scale(1.15);
+}
+
+.password-wrapper input {
+  padding-right: 40px; 
+}
+
+@media (max-width: 768px) {
+ 
+  nav {
+    width: 92%;
+    height: 56px;
+    padding: 0 14px;
+    margin-top: 10px;
+  }
+
+  .logo {
+    height: 32px;
+  }
+
+  .nav-right a {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+ 
+  .card-container {
+    padding: 15px;
+  }
+
+  .card {
+    width: 90%;
+    padding: 20px 25px 25px 25px;
+    margin-top: 25px;
+    border-radius: 35px;
+  }
+
+  .card h2 {
+    font-size: 28px;
+    margin-bottom: 1rem;
+  }
+
+  .form-group input {
+    padding: 0.55rem;
+    font-size: 0.95rem;
+  }
+
+ 
+  .eye-icon {
+    width: 20px;
+    right: 10px;
+  }
+
+ 
+  .actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .actions a {
+    font-size: 0.85rem;
+    margin-top: 6px;
+  }
+
+ 
+  .btn {
+    width: 130px;
+    padding: 0.6rem;
+    font-size: 0.95rem;
+    transform: scale(1);
+  }
+
+  .btn:hover {
+    transform: scale(1.1);
+  }
+
+ 
+  .create-account {
+    font-size: 0.9rem;
+  }
+
+  .create-account a {
+    font-size: 0.9rem;
+  }
+
+ 
+  .footer {
+    font-size: 9px;
+    padding: 15px;
+  }
+
+  .footer img {
+    height: 14px;
+    width: 14px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  nav {
+    height: 50px;
+  }
+
+  .nav-right a {
+    font-size: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  .card {
+    width: 92%;
+    padding: 18px 20px 22px 20px;
+    border-radius: 30px;
+  }
+
+  .card h2 {
+    font-size: 24px;
+  }
+
+  .form-group input {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .btn {
+    width: 120px;
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .create-account {
+    font-size: 0.85rem;
+  }
+
+  .create-account a {
+    font-size: 0.85rem;
+  }
+
+  .footer {
+    font-size: 8px;
+  }
+}
