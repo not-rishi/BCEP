@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Create Account</title>
+    <link rel="icon" type="image/png" href="../../../Data/Images/logo.png" />
+
+    <style>
+      /* Google Font */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+      }
+      img {
+  -webkit-user-drag: none; 
+  -webkit-touch-callout: none;
+}
+
+button, a, .theme-event-card, .filter-btn {
+ 
+  touch-action: manipulation;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+      body {
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+      }
+
+      :root {
+        --master-grad: linear-gradient(
+          270deg,
+          #ffffff,
+          #00c6ff,
+          #0072ff,
+          #00e5ff,
+          #ffffff,
+          white,
+          rgb(245, 245, 110),
+          orange,
+          rgb(245, 245, 110),
+          white
+        );
+        --blue-grad: linear-gradient(
+          90deg,
+          #ffffff,
+          #00c6ff,
+          #0072ff,
+          #00e5ff,
+          #ffffff
+        );
+
+        --orange-grad: linear-gradient(
+          90deg,
+          white,
+          rgb(245, 245, 110),
+          orange,
+          rgb(245, 245, 110),
+          white
+        );
+        --green-grad: linear-gradient(
+          90deg,
+          white,
+          #d4f7d4,
+          #a6e6a6,
+          #8fdc8f,
+          #a6e6a6,
+          #d4f7d4,
+          white
+        );
+        --purple-grad: linear-gradient(
+          90deg,
+          white,
+          #e0d4f7,
+          #b39ddb,
+          #9575cd,
+          #b39ddb,
+          #e0d4f7,
+          white
+        );
+
+        --orange-box-shadow: 0 0 15px #ff7f00, 0 0 30px #efcb55;
+        --blue-box-shadow: 0 0 25px #00c6ff, 0 0 50px #0072ff;
+        --green-box-shadow: 0 0 25px #a6e6a6, 0 0 50px #8fdc8f;
+        --purple-box-shadow: 0 0 15px #b39ddb, 0 0 30px #9575cd,
+          0 0 10px #7e57c2;
+      }
+
+      html,
+      body {
+        height: 100%;
+        font-family: "Poppins", sans-serif;
+        background-color: black;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      main {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Footer */
+      .footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: black;
+        color: rgba(128, 128, 128, 0.7);
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .footer-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        margin-bottom: 5px;
+      }
+
+      .footer img {
+        height: 15px;
+        width: 15px;
+      }
+
+      @keyframes flow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .form-container {
+        margin-top: 100px;
+      }
+
+      .form-container h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+        background: var(--blue-grad);
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 8s linear infinite;
+      }
+      input {
+        background-color: #272626;
+        border: none;
+        height: 40px;
+        width: 260px;
+        font-size: 20px;
+        padding: 5px;
+        border-radius: 2px;
+        color: white;
+      }
+      label {
+        display: inline-block;
+        font-size: 25px;
+        background: var(--blue-grad);
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 8s linear infinite;
+      }
+
+      .btn {
+        width: 120px;
+        height: 40px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 0.5s ease-in-out,
+          background-color 0.5s ease-in-out, transform 0.4s ease-in-out;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--blue-grad);
+        background-size: 600% 600%;
+        animation: flow 8s linear infinite;
+        border-radius: inherit;
+        z-index: 0;
+      }
+      /* .btn::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        background: black;
+        border-radius: 6px;
+        z-index: 1;
+        transition: opacity 0.3s ease-in-out;
+      } */
+      .btn:hover {
+        transform: scale(1.2);
+        box-shadow: var(--blue-box-shadow);
+      }
+      .btn:hover::after {
+        opacity: 0;
+      }
+      .btn:hover span {
+        background: black;
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .btn span {
+        position: relative;
+        z-index: 2;
+        color: black;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      @media (max-width: 600px) {
+        main {
+          padding: 10px;
+        }
+
+        .form-container {
+          margin-top: 50px;
+          text-align: center;
+          width: 100%;
+        }
+
+        .form-container h2 {
+          font-size: 28px;
+          margin-bottom: 15px;
+        }
+
+        label {
+          font-size: 18px;
+        }
+
+        input {
+          width: 90%;
+          max-width: 350px;
+          font-size: 16px;
+          height: 40px;
+          padding: 8px;
+        }
+
+        .btn {
+          width: 90%;
+          max-width: 250px;
+          height: 45px;
+          font-size: 16px;
+          margin-top: 20px;
+        }
+
+        .btn span {
+          font-size: 15px;
+        }
+
+        .footer {
+          font-size: 10px;
+          padding: 12px 5px;
+        }
+
+        .footer-header {
+          gap: 5px;
+        }
+      }
+
+      .resend-btn {
+        width: 160px;
+        height: 40px;
+        margin-top: -10px;
+        background-color:black;
+        border: none;
+        margin-left: 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .resend-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--blue-grad);
+        background-size: 600% 600%;
+        animation: flow 8s linear infinite;
+        border-radius: inherit;
+        opacity: 0.8;
+        z-index: 0;
+      }
+
+      .resend-btn span {
+        position: relative;
+        z-index: 2;
+        color: black;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .resend-btn:not(:disabled):hover {
+        transform: scale(1.12);
+        box-shadow: var(--blue-box-shadow);
+      }
+
+      .resend-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        transform: scale(1);
+        box-shadow: none;
+      }
+
+      .resend-btn:disabled::before {
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+
+  <body id="vanta-bg">
+    <script src="../../../config.js"></script>
+    <main>
+      <div class="form-container" id="emailSection">
+        <h2>Enter OTP</h2>
+
+        <label for="otp">OTP</label>
+        <div></div>
+        <form id="otpForm">
+          <input
+            type="text"
+            id="otp"
+            placeholder="Enter your 6 digit OTP here"
+            required
+          />
+          <button type="submit" class="btn" id="VerifyOtpBtn">
+            <span>Verify OTP</span>
+          </button>
+        </form>
+
+        <button class="resend-btn" id="ResendOtpBtn" disabled>
+          <span>Resend OTP (2:00)</span>
+        </button>
+
+        <p id="resendMessage" style="margin-top: 10px; font-size: 14px"></p>
+
+        <p id="emailMessage" class="note"></p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-header">
+        <img src="../../../Data/Images/logo.png" alt="Logo" />
+        <p>BMSCE Club Events</p>
+      </div>
+      <p>
+        Empowering student communities through collaboration, innovation, and
+        creativity.
+      </p>
+      <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
+    </footer>
+    <script>
+      const otpField = document.getElementById("otp");
+      const verifyBtn = document.getElementById("VerifyOtpBtn");
+      const msg = document.getElementById("emailMessage");
+      const otpForm = document.getElementById("otpForm");
+
+      const email = localStorage.getItem("signup_email");
+
+      if (!email) {
+        msg.style.color = "red";
+        msg.textContent = "Email missing. Please restart signup.";
+      }
+
+      otpForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        verifyBtn.click();
+      });
+
+      verifyBtn.addEventListener("click", async () => {
+        const otp = otpField.value.trim();
+
+        if (otp.length < 4) {
+          msg.style.color = "red";
+          msg.textContent = "Enter a valid OTP.";
+          return;
+        }
+
+        msg.style.color = "yellow";
+        msg.textContent = "Verifying OTP...";
+
+        try {
+          const res = await apiFetch("/auth/verify-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, otp }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            msg.style.color = "red";
+            msg.textContent = data.msg || "Invalid OTP.";
+            return;
+          }
+
+          msg.style.color = "lightgreen";
+          msg.textContent = "OTP verified! Redirecting...";
+
+          setTimeout(() => {
+            window.location.href = "create-account.html";
+          }, 800);
+        } catch (error) {
+          msg.style.color = "red";
+          msg.textContent = "Server unreachable.";
+        }
+      });
+    </script>
+    <script>
+      const resendBtn = document.getElementById("ResendOtpBtn");
+      const resendMsg = document.getElementById("resendMessage");
+      const email2 = localStorage.getItem("signup_email");
+
+      let timer = 120;
+      let countdown;
+
+      startCountdown();
+
+      function startCountdown() {
+        resendBtn.disabled = true;
+        updateButtonText();
+
+        countdown = setInterval(() => {
+          timer--;
+          updateButtonText();
+
+          if (timer <= 0) {
+            clearInterval(countdown);
+            resendBtn.disabled = false;
+            resendBtn.innerHTML = "<span>Resend OTP</span>";
+          }
+        }, 1000);
+      }
+
+      function updateButtonText() {
+        const min = Math.floor(timer / 60);
+        const sec = String(timer % 60).padStart(2, "0");
+        resendBtn.innerHTML = `<span>Resend OTP (${min}:${sec})</span>`;
+      }
+
+      resendBtn.addEventListener("click", async () => {
+        if (!email2) {
+          resendMsg.style.color = "red";
+          resendMsg.textContent = "Email missing. Restart signup.";
+          return;
+        }
+
+        resendMsg.style.color = "yellow";
+        resendMsg.textContent = "Resending OTP...";
+
+        try {
+          const res = await apiFetch(`/auth/send-otp`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email2 }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            resendMsg.style.color = "red";
+            resendMsg.textContent = data.msg || "Failed to resend OTP.";
+            return;
+          }
+
+          resendMsg.style.color = "lightgreen";
+          resendMsg.textContent = "OTP resent successfully!";
+
+          // Restart timer
+          timer = 120;
+          clearInterval(countdown);
+          startCountdown();
+        } catch (err) {
+          resendMsg.style.color = "red";
+          resendMsg.textContent = "Server not reachable.";
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <script>
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x92cc,
+        backgroundColor: 0x000000,
+        maxDistance: 25.0,
+        spacing: 20.0,
+      });
+    </script>
+  </body>
+</html>
