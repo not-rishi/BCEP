@@ -1,0 +1,474 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+:root {
+  --master-pulse-nav: linear-gradient(
+    90deg,
+    white,
+    #00c6ff,
+    #0072ff,
+    #00e5ff,
+    black,
+    black,
+    black,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    white,
+    black,
+    black,
+    black,
+    white,
+    #00c6ff,
+    #0072ff,
+    #00e5ff
+  );
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "poppins", sans-serif;
+  background-color: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar :horizontal {
+  height: 1px;
+  width: 1px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 1px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+img {
+  -webkit-user-drag: none; 
+  -webkit-touch-callout: none;
+}
+
+button, a, .theme-event-card, .filter-btn {
+ 
+  touch-action: manipulation;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav {
+  position: relative;
+  width: 80%;
+  height: 64px;
+  margin-top: 0px;
+  border-radius: 50px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--master-pulse-nav);
+  background-size: 600% 600%;
+  animation: nav-flow 15s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+}
+@keyframes nav-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+nav::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: black;
+  border-radius: calc(50px - 3px);
+  z-index: 1;
+}
+nav:hover {
+  box-shadow: 0 0 20px 5px rgba(100, 101, 101, 0.7),
+    0 0 30px 10px rgba(255, 255, 255, 0.5);
+}
+.logo {
+  height: 40px;
+  z-index: 2;
+}
+.nav-left {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.nav-right a {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 20px;
+  margin-right: 25px;
+  font-weight: bold;
+}
+.nav-right a:hover {
+  background: linear-gradient(
+    270deg,
+    #ffffff,
+    #00c6ff,
+    #0072ff,
+    #00e5ff,
+    #ffffff,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    white
+  );
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+}
+.branding {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.branding img {
+  width: 150px;
+  height: 150px;
+}
+.main-text {
+  font-size: 100px;
+
+  background: linear-gradient(
+    90deg,
+    gray,
+    gray,
+    gray,
+    gray,
+    gray,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    gray,
+    gray,
+    gray,
+    gray,
+    gray
+  );
+  font-weight: 200;
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nav-flow 15s linear infinite;
+  text-decoration: none;
+}
+
+.button-container {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.student-button {
+  width: 200px;
+  height: 75px;
+  background-color: white;
+  margin-right: 3vw;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out,
+    transform 0.4s ease-in-out;
+}
+.student-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(270deg, #00c6ff, white, #00e5ff);
+  background-size: 600% 600%;
+  animation: flow 8s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+}
+.student-button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: rgb(0, 0, 0);
+  border-radius: 23px;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.student-button:hover::after {
+  opacity: 0;
+}
+.student-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px #00c6ff, 0 0 50px #0072ff;
+  background-color: #00b4ff;
+}
+.student-button:hover span {
+  background: rgb(4, 158, 219);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.student-button span {
+  position: relative;
+  z-index: 2;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 600;
+  background: linear-gradient(270deg, #00c6ff, #ffffff, #00e5ff);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+  text-decoration: none;
+}
+
+.club-button {
+  width: 200px;
+  height: 75px;
+  background-color: white;
+  margin-left: 3vw;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out,
+    transform 0.4s ease-in-out;
+}
+.club-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(270deg, #ff7f00, #ffffff, #ffc300);
+  background-size: 600% 600%;
+  animation: flow 8s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+}
+.club-button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: rgb(0, 0, 0);
+  border-radius: 23px;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.club-button:hover::after {
+  opacity: 0;
+}
+.club-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 15px #ff7f00, 0 0 30px #ffc300;
+  background-color: #00b4ff;
+}
+.club-button:hover span {
+  background: rgb(238, 113, 4);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.club-button span {
+  position: relative;
+  z-index: 2;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 600;
+  background: linear-gradient(270deg, #ff7f00, #ffffff, #ffc300);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+  text-decoration: none;
+}
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.505);
+  color: rgba(128, 128, 128, 0.7);
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.footer-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 5px;
+}
+
+.footer img {
+  height: 15px;
+  width: 15px;
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    width: 92%;
+    height: 56px;
+    padding: 0 14px;
+    margin-top: 10px;
+  }
+
+  .logo {
+    height: 32px;
+  }
+
+  .nav-right a {
+    font-size: 14px;
+    margin: 0 10px;
+  }
+
+  .branding {
+    flex-direction: column;
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .main-text {
+    font-size: 60px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    margin-top: 60px;
+    gap: 20px;
+  }
+
+  .student-button,
+  .club-button {
+    width: 70%;
+    height: 65px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .student-button span,
+  .club-button span {
+    font-size: 18px;
+  }
+
+  .footer {
+    font-size: 9px;
+    padding: 15px;
+  }
+
+  .footer img {
+    height: 14px;
+    width: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    height: 50px;
+  }
+
+  .nav-right a {
+    font-size: 12px;
+    margin: 0 6px;
+  }
+
+  .main-text {
+    font-size: 45px;
+  }
+
+  .student-button,
+  .club-button {
+    width: 80%;
+    height: 60px;
+  }
+
+  .student-button span,
+  .club-button span {
+    font-size: 16px;
+  }
+
+  .footer {
+    font-size: 8px;
+  }
+}
