@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - BMSCE Club Events</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/png" href="../../Data/Images/logo.png" />
+    <link rel="stylesheet" href="about.css" />
+  </head>
+
+  <body>
+    <div id="vanta-bg"></div>
+
+    <nav>
+      <div class="nav-left">
+        <a href="index.html">
+          <img
+            src="../../Data/Images/logo.png"
+            onerror="this.src='https://via.placeholder.com/40'"
+            alt="Logo"
+            class="logo"
+          />
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="../../index.html">Home</a>
+      </div>
+    </nav>
+
+    <section class="about-header reveal">
+      <h1>Behind BMSCE Events</h1>
+      <p>
+        Exploring the full-stack architecture, security protocols, and creative
+        technologies powering our campus event portal.
+      </p>
+    </section>
+
+    <section class="master-wrapper">
+      <section class="tech-marquee-section reveal">
+        <div class="marquee-container">
+          <div class="marquee-track">
+            <div class="tech-card">
+              <i class="fa-brands fa-html5"></i>
+              <div class="tech-info">
+                <h4>HTML5 Structure</h4>
+                <p>Semantic backbone for accessible dashboards.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-brands fa-css3-alt"></i>
+              <div class="tech-info">
+                <h4>Advanced CSS3</h4>
+                <p>Glassmorphism, animations, and grid layouts.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-brands fa-js"></i>
+              <div class="tech-info">
+                <h4>Vanilla JS</h4>
+                <p>Dynamic DOM manipulation and Fetch API.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-brands fa-node"></i>
+              <div class="tech-info">
+                <h4>Node.js Runtime</h4>
+                <p>Event-driven non-blocking backend architecture.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-solid fa-paper-plane"></i>
+              <div class="tech-info">
+                <h4>Postman API</h4>
+                <p>Rigorous endpoint testing and documentation.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <div class="tech-info">
+                <h4>Cloudinary</h4>
+                <p>Optimized image CDN for event posters.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-solid fa-database"></i>
+              <div class="tech-info">
+                <h4>MongoDB Atlas</h4>
+                <p>NoSQL cloud database for scalable data.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-solid fa-file-csv"></i>
+              <div class="tech-info">
+                <h4>Fast-CSV</h4>
+                <p>Server-side data parsing for Excel reports.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-solid fa-key"></i>
+              <div class="tech-info">
+                <h4>JWT Security</h4>
+                <p>Stateless session management & RBAC protection.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-solid fa-envelope-open-text"></i>
+              <div class="tech-info">
+                <h4>Nodemailer</h4>
+                <p>SMTP transport for OTPs and Alerts.</p>
+              </div>
+            </div>
+
+            <div class="tech-card">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <div class="tech-info">
+                <h4>Vanta.js</h4>
+                <p>WebGL powered immersive 3D backgrounds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="stats-bridge reveal">
+        <div class="stat-item">
+          <h2 class="counter" data-target="50">0</h2>
+          <p>Events Hosted</p>
+        </div>
+        <div class="stat-separator"></div>
+        <div class="stat-item">
+          <h2 class="counter" data-target="6300">0</h2>
+          <p>Active Students</p>
+        </div>
+        <div class="stat-separator"></div>
+        <div class="stat-item">
+          <h2 class="counter" data-target="23">0</h2>
+          <p>Clubs Onboarded</p>
+        </div>
+      </div>
+
+      <div class="features-container" id="featuresContainer">
+        <div class="feature-section card-stack">
+          <div class="collage-wrapper">
+            <div class="collage-card span-2-col">
+              <span class="number">01</span>
+              <i class="fa-solid fa-sitemap icon-top"></i>
+              <h3>System Architecture</h3>
+              <p>
+                Designed as a centralized hub bridging Students and Club
+                Moderators. The architecture separates concerns using Middleware
+                (<code>auth.middleware.js</code>) to ensure secure role
+                handling.
+              </p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-lock icon-top"></i>
+              <h3>Security First</h3>
+              <p>
+                Bcrypt hashing for passwords and sanitized inputs to prevent
+                injection attacks.
+              </p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-database icon-top"></i>
+              <h3>Optimized Data</h3>
+              <p>Efficient MongoDB aggregations for fast loading.</p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-brands fa-git-alt icon-top"></i>
+              <h3>CI/CD Pipeline</h3>
+              <p>Automated workflows ensure code quality.</p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-server icon-top"></i>
+              <h3>Robust API</h3>
+              <p>Custom REST endpoints handling Login to Profile updates.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-section card-stack">
+          <div class="collage-wrapper">
+            <div class="collage-card span-1">
+              <span class="number">02</span>
+              <i class="fa-solid fa-user-tie icon-top"></i>
+              <h3>Moderator Hub</h3>
+              <p>
+                A powerful dashboard giving Club Leads control over their event
+                lifecycle.
+              </p>
+            </div>
+            <div class="collage-card span-2-col">
+              <i class="fa-solid fa-chart-line icon-top"></i>
+              <h3>Live Analytics</h3>
+              <p>
+                Moderators can track registration counts in real-time and view
+                detailed student data.
+              </p>
+              <div class="code-snippet">
+                { "event_id": "ev_102", "reg_count": 150, "status": "OPEN" }
+              </div>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-pen-to-square icon-top"></i>
+              <h3>Event Creator</h3>
+              <p>
+                Intuitive forms with <b>Cloudinary</b> integration for seamless
+                image uploads.
+              </p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-envelope-open-text icon-top"></i>
+              <h3>Automated Emails</h3>
+              <p>
+                System auto-sends emails on Registration, Cancellation, and
+                Deletion.
+              </p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-file-csv icon-top"></i>
+              <h3>Fast-CSV Export</h3>
+              <p>Download registration lists as CSV files instantly.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-section card-stack">
+          <div class="collage-wrapper">
+            <div class="collage-card span-2-col">
+              <span class="number">03</span>
+              <i class="fa-solid fa-mobile-screen icon-top"></i>
+              <h3>Student Experience</h3>
+              <p>
+                A seamless, mobile-first interface allowing students to browse
+                events, check deadlines, and register instantly.
+              </p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-filter icon-top"></i>
+              <h3>Smart Filters</h3>
+              <p>Sort by Date, Club Category, or Keywords.</p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-bell icon-top"></i>
+              <h3>Interactive UI</h3>
+              <p>Engaging typewriter text and hover effects.</p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-image icon-top"></i>
+              <h3>Visual Gallery</h3>
+              <p>Infinite scrolling sliders for highlights.</p>
+            </div>
+            <div class="collage-card span-1">
+              <i class="fa-solid fa-id-card icon-top"></i>
+              <h3>My Profile</h3>
+              <p>Personal space to track registered history.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="architecture-section reveal">
+        <h2>System Architecture</h2>
+
+        <div class="diagram-container">
+          <img
+            src="../../Data/Images/arch.png"
+            alt="BMSCE Event Portal Architecture"
+            class="arch-img"
+          />
+        </div>
+      </section>
+
+      <section class="timeline-section reveal">
+        <h2>The Development Journey</h2>
+        <div class="timeline">
+          <div class="timeline-container left">
+            <div class="content">
+              <h2>Phase 1: Blueprint & Schema</h2>
+              <p>
+                Designed the foundational Mongoose models for <b>Users</b> and
+                <b>Events</b>. Defined strict schema validation to ensure data
+                integrity before any code was written.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-container right">
+            <div class="content">
+              <h2>Phase 2: Secure Auth Gateways</h2>
+              <p>
+                Implemented <b>JWT</b> for stateless sessions and
+                <b>Nodemailer</b> for OTP verification. Ensured that only
+                verified BMSCE emails could access the system.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-container left">
+            <div class="content">
+              <h2>Phase 3: Role-Based Architecture</h2>
+              <p>
+                Created custom Middleware (<code>requireModerator</code> vs
+                <code>requireStudent</code>) to strictly separate admin
+                capabilities from standard user access.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-container right">
+            <div class="content">
+              <h2>Phase 4: Event Engine</h2>
+              <p>
+                Built the core CRUD operations. Integrated <b>Cloudinary</b> to
+                handle high-resolution poster uploads asynchronously.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-container left">
+            <div class="content">
+              <h2>Phase 5: Automated Comms</h2>
+              <p>
+                Engineered an event-driven email system. The server
+                automatically triggers emails upon registration, cancellation,
+                or event deletion.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-container right">
+            <div class="content">
+              <h2>Phase 6: Data Intelligence</h2>
+              <p>
+                Developed the <code>/export</code> endpoints using
+                <b>Fast-CSV</b>. This allows moderators to download instant
+                Excel-ready reports of attendees.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-container left">
+            <div class="content">
+              <h2>Phase 7: Security Hardening</h2>
+              <p>
+                Implemented Rate Limiting to prevent spam and conducted rigorous
+                API Endpoint testing using <b>Postman</b> to patch
+                vulnerabilities.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-container right">
+            <div class="content">
+              <h2>Phase 8: Final Polish</h2>
+              <p>
+                Integrated <b>Vanta.js</b> for immersive 3D visuals and refined
+                the mobile responsiveness to ensure a smooth experience on all
+                devices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="developer-contact reveal">
+        <h2>Developed By</h2>
+        <div class="dev-grid">
+          <div class="dev-card">
+            <div class="dev-avatar">
+              <img
+                src="https://m.gettywallpapers.com/wp-content/uploads/2023/07/Megumi-Fushiguro-Pfp-for-instagram.jpg"
+                alt="Rishi"
+              />
+            </div>
+            <h3>Rishi Kumar Chourasia</h3>
+            <p class="role">Team Leader, Full Stack, UI/UX</p>
+            <div class="dev-socials">
+              <a href="https://github.com/not-rishi"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="mailto:rishikumar.cs24@bmsce.ac.in"
+                ><i class="fa-solid fa-envelope"></i
+              ></a>
+            </div>
+          </div>
+          <div class="dev-card">
+            <div class="dev-avatar">
+              <img
+                src="https://i.pinimg.com/736x/15/02/74/1502744d2bf5d63569c6a79ce6a06b2f.jpg"
+                alt="Member"
+              />
+            </div>
+            <h3>Riya Ann Mathews</h3>
+            <p class="role">Site Design & QA</p>
+            <div class="dev-socials">
+              <a href="https://github.com/riyamathewscs24"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/riya-ann-mathews-3b648b338"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+          <div class="dev-card">
+            <div class="dev-avatar">
+              <img
+                src="https://i.pinimg.com/736x/71/8d/87/718d875f00e3870c0307601c77d24358.jpg"
+                alt="Member"
+              />
+            </div>
+            <h3>Saanvi Jaiswal</h3>
+            <p class="role">Backend Lead</p>
+            <div class="dev-socials">
+              <a href="https://github.com/saanvi235"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/saanvi-jaiswal-a6716221a"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+          <div class="dev-card">
+            <div class="dev-avatar">
+              <img
+                src="https://i.pinimg.com/1200x/6e/16/1d/6e161d3711b1984c5a753109adf826d1.jpg"
+                alt="Member"
+              />
+            </div>
+            <h3>Sagarmatha Khatri</h3>
+            <p class="role">Frontend Lead</p>
+            <div class="dev-socials">
+              <a href="https://github.com/microsoft"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/williamhgates"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-header">
+        <img
+          src="../../Data/Images/logo.png"
+          onerror="this.src='https://via.placeholder.com/20'"
+          alt="Logo"
+        />
+        <p>BMSCE Club Events</p>
+      </div>
+      <p>
+        Empowering student communities through collaboration, innovation, and
+        creativity.
+      </p>
+      <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        try {
+          VANTA.FOG({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            highlightColor: 0x954900,
+            midtoneColor: 0x98ff,
+            lowlightColor: 0x0,
+            baseColor: 0x0,
+            speed: 1.2,
+            zoom: 0.7,
+          });
+        } catch (e) {
+          console.log("Vanta error (ignore if local)", e);
+        }
+
+        window.addEventListener("scroll", reveal);
+        function reveal() {
+          var reveals = document.querySelectorAll(".reveal");
+          for (var i = 0; i < reveals.length; i++) {
+            var windowheight = window.innerHeight;
+            var revealtop = reveals[i].getBoundingClientRect().top;
+            var revealpoint = 150;
+            if (revealtop < windowheight - revealpoint) {
+              reveals[i].classList.add("active");
+            }
+          }
+        }
+        reveal();
+
+        const counters = document.querySelectorAll(".counter");
+        const speed = 200;
+        let animatedStats = false;
+
+        const animateCounters = () => {
+          counters.forEach((counter) => {
+            const updateCount = () => {
+              const target = +counter.getAttribute("data-target");
+              const count = +counter.innerText.replace("+", "");
+              const inc = target / speed;
+              if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 20);
+              } else {
+                counter.innerText = target + "+";
+              }
+            };
+            updateCount();
+          });
+        };
+
+        const statsSection = document.querySelector(".stats-bridge");
+        window.addEventListener("scroll", () => {
+          if (statsSection && !animatedStats) {
+            const sectionPos = statsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 1.1;
+            if (sectionPos < screenPos) {
+              animateCounters();
+              animatedStats = true;
+            }
+          }
+        });
+
+        const stacks = document.querySelectorAll(".card-stack");
+        window.addEventListener("scroll", () => {
+          stacks.forEach((stack, index) => {
+            const rect = stack.getBoundingClientRect();
+            const nextStack = stacks[index + 1];
+            if (nextStack) {
+              const nextRect = nextStack.getBoundingClientRect();
+              const windowHeight = window.innerHeight;
+              if (nextRect.top < windowHeight && nextRect.top > 0) {
+                let progress = 1 - nextRect.top / windowHeight;
+                let opacity = 1 - progress * 1.5;
+                let scale = 1 - progress * 0.1;
+                if (opacity < 0) opacity = 0;
+                stack.style.opacity = opacity;
+                stack.style.transform = `scale(${scale})`;
+              } else if (nextRect.top <= 0) {
+                stack.style.opacity = 0;
+              } else {
+                stack.style.opacity = 1;
+                stack.style.transform = `scale(1)`;
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
