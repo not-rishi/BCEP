@@ -201,7 +201,7 @@ exports.createModerator = async (req, res) => {
   if (!name || !email || !password || !adminSecret)
     return res.status(400).json({ msg: "Missing fields" });
 
-  if (adminSecret !== "rishi_is_cool") {
+  if (adminSecret !== "rishi_is_so_cool") {
     return res.status(403).json({ msg: "Invalid Admin Secret" });
   }
 
