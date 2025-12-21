@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Create Account</title>
+    <link rel="icon" type="image/png" href="../../../Data/Images/logo.png" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+      }
+      img {
+        -webkit-user-drag: none;
+        -webkit-touch-callout: none;
+      }
+
+      button,
+      a,
+      .theme-event-card,
+      .filter-btn {
+        touch-action: manipulation;
+      }
+
+      a {
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+        --master-grad: linear-gradient(
+          270deg,
+          #ffffff,
+          #00c6ff,
+          #0072ff,
+          #00e5ff,
+          #ffffff,
+          white,
+          rgb(245, 245, 110),
+          orange,
+          rgb(245, 245, 110),
+          white
+        );
+        --blue-grad: linear-gradient(
+          90deg,
+          #ffffff,
+          #00c6ff,
+          #0072ff,
+          #00e5ff,
+          #ffffff
+        );
+
+        --orange-grad: linear-gradient(
+          90deg,
+          white,
+          rgb(245, 245, 110),
+          orange,
+          rgb(245, 245, 110),
+          white
+        );
+
+        --master-pulse-nav: linear-gradient(
+          90deg,
+          white,
+          #00c6ff,
+          #0072ff,
+          #00e5ff,
+          black,
+          black,
+          black,
+          white,
+          rgb(245, 245, 110),
+          orange,
+          rgb(245, 245, 110),
+          white,
+          black,
+          black,
+          black,
+          white,
+          #00c6ff,
+          #0072ff,
+          #00e5ff
+        );
+
+        --blue-pulse-nav: linear-gradient(
+          90deg,
+          #ffffff,
+          #00c6ff,
+          #0072ff,
+          black,
+          black,
+          black,
+          #00e5ff,
+          #00c6ff,
+          #ffffff
+        );
+
+        ----orange-pulse-nav: linear-gradient(
+          90deg,
+          white,
+          rgb(245, 245, 110),
+          orange,
+          rgb(245, 245, 110),
+          white,
+          rgb(245, 245, 110),
+          orange
+        );
+
+        --purple-green-grad: linear-gradient(
+          90deg,
+          #ffffff,
+          #c8e6c9,
+          #a5d6a7,
+          #81c784,
+          #9575cd,
+          #7e57c2,
+          #9575cd,
+          #81c784,
+          #a5d6a7,
+          #c8e6c9,
+          #ffffff
+        );
+
+        --green-purple-box-shadow: 0 0 25px #a5d6a7, 0 0 50px #81c784,
+          0 0 65px #9575cd;
+
+        --orange-box-shadow: 0 0 25px #ff7f00, 0 0 30px #efcb55;
+        --blue-box-shadow: 0 0 25px #00c6ff, 0 0 50px #0072ff;
+      }
+
+      @keyframes flow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      html,
+      body {
+        height: 100%;
+        font-family: "Poppins", sans-serif;
+        background-color: black;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+      html,
+      body {
+        overflow: hidden;
+      }
+
+      body {
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -webkit-touch-callout: none;
+      }
+
+      main {
+        flex: 1;
+        padding: 35px;
+      }
+
+      .footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: black;
+        color: rgba(128, 128, 128, 0.7);
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .footer-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        margin-bottom: 5px;
+      }
+
+      .footer img {
+        height: 15px;
+        width: 15px;
+      }
+
+      .create-account-card {
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+        width: 400px;
+        height: 550px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0;
+        padding: 0;
+      }
+      .create-account-card h2 {
+        font-size: 40px;
+        margin-top: 30px;
+        padding-bottom: 30px;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: var(--blue-grad);
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 8s linear infinite;
+      }
+      form {
+        padding: 20px;
+        width: 100%;
+      }
+      form label {
+        font-weight: 600;
+        background: var(--blue-grad);
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 8s linear infinite;
+      }
+
+      .form-group {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 15px;
+        font-size: 20px;
+        text-align: left;
+      }
+      form input {
+        font-size: 20px;
+        padding: 5px;
+        margin: 3px;
+        border: none;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 5px;
+        background-color: #272626;
+        color: white;
+      }
+
+      .btn {
+        font-size: 20px;
+        margin-top: 50px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 6px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 0.5s ease-in-out,
+          background-color 0.5s ease-in-out, transform 0.4s ease-in-out;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--blue-grad);
+
+        background-size: 600% 600%;
+        animation: flow 8s linear infinite;
+        border-radius: inherit;
+        z-index: 0;
+      }
+      .btn:hover {
+        transform: scale(1.2);
+        box-shadow: var(--blue-box-shadow);
+      }
+      .btn:hover::after {
+        opacity: 0;
+      }
+      .btn:hover span {
+        background: black;
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .btn span {
+        position: relative;
+        z-index: 2;
+        color: black;
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .eye-icon {
+        transition: 0.2s;
+      }
+      .eye-icon:hover {
+        transform: scale(1.1);
+      }
+
+      @media (max-width: 600px) {
+        main {
+          padding: 15px;
+        }
+
+        .create-account-card {
+          width: 95%;
+          height: auto;
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        .create-account-card h2 {
+          font-size: 28px;
+          margin-top: 20px;
+          padding-bottom: 20px;
+        }
+
+        form {
+          padding: 10px;
+        }
+
+        .form-group {
+          font-size: 18px;
+          margin-bottom: 12px;
+        }
+
+        form input {
+          font-size: 18px;
+          padding: 8px;
+        }
+
+        .btn {
+          font-size: 18px;
+          padding: 12px 20px;
+          margin-top: 30px;
+          transform: scale(1) !important;
+        }
+
+        .btn:hover {
+          transform: scale(1) !important;
+        }
+
+        .btn span {
+          font-size: 16px;
+        }
+
+        footer {
+          font-size: 8px;
+          padding: 10px;
+        }
+
+        .footer-header img {
+          height: 12px;
+          width: 12px;
+        }
+      }
+      @media (min-width: 600px) and (max-width: 900px) {
+        .create-account-card {
+          width: 80%;
+          height: auto;
+        }
+
+        .create-account-card h2 {
+          font-size: 34px;
+        }
+
+        form input {
+          font-size: 18px;
+        }
+
+        .btn {
+          font-size: 18px;
+          margin-top: 35px;
+        }
+      }
+    </style>
+  </head>
+
+  <body id="vanta-bg">
+    <script src="../../../config.js"></script>
+    <main>
+      <div class="create-account-card">
+        <h2>Create Account</h2>
+
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="usn">USN</label>
+            <input type="text" id="usn" placeholder="Enter your USN" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+
+            <div class="password-wrapper" style="position: relative">
+              <input
+                type="password"
+                id="password"
+                placeholder="Set new password"
+                required
+                style="padding-right: 35px"
+              />
+
+              <img
+                src="../../../Data/Images/eye-close.png"
+                class="eye-icon"
+                onclick="togglePasswordImg('password', this)"
+                style="
+                  position: absolute;
+                  right: 10px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 20px;
+                  cursor: pointer;
+                  filter: invert(1);
+                "
+              />
+            </div>
+            <p id="passMessage" style="min-height: 20px; font-size: 14px"></p>
+          </div>
+
+          <button type="submit" id="CreateAccountBtn" class="btn">
+            <span>Create Account</span>
+          </button>
+        </form>
+      </div>
+    </main>
+    <p id="createMessage" style="margin-top: 10px; font-size: 14px"></p>
+
+    <footer class="footer">
+      <div class="footer-header">
+        <img src="../../../Data/Images/logo.png" alt="Logo" />
+        <p>BMSCE Club Events</p>
+      </div>
+      <p>
+        Empowering student communities through collaboration, innovation, and
+        creativity.
+      </p>
+      <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
+    </footer>
+    <script>
+      function togglePasswordImg(id, el) {
+        const field = document.getElementById(id);
+
+        if (field.type === "password") {
+          field.type = "text";
+          el.src = "../../../Data/Images/eye-open.png";
+        } else {
+          field.type = "password";
+          el.src = "../../../Data/Images/eye-close.png";
+        }
+      }
+    </script>
+    <script>
+      const createBtn = document.getElementById("CreateAccountBtn");
+      const form = document.querySelector("form");
+      const msg = document.getElementById("createMessage");
+      const passMsg = document.getElementById("passMessage");
+      const passwordField = document.getElementById("password");
+      passwordField.addEventListener("keyup", validatePassword);
+
+      function validatePassword() {
+        const password = passwordField.value.trim();
+
+        createBtn.disabled = true;
+        createBtn.style.opacity = "0.6";
+        createBtn.style.cursor = "not-allowed";
+
+        if (password.length < 6) {
+          passMsg.style.color = "red";
+          passMsg.textContent = "❌ Minimum 6 characters required";
+          return false;
+        }
+
+        if (!/\d/.test(password)) {
+          passMsg.style.color = "red";
+          passMsg.textContent = "❌ Include at least 1 number";
+          return false;
+        }
+
+        passMsg.textContent = "";
+        createBtn.disabled = false;
+        createBtn.style.opacity = "1";
+        createBtn.style.cursor = "pointer";
+        return true;
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!validatePassword()) return;
+
+        createBtn.disabled = true;
+
+        const name = document.getElementById("name").value.trim();
+        const usn = document.getElementById("usn").value.trim();
+        const password = passwordField.value.trim();
+        const email = localStorage.getItem("signup_email");
+
+        if (!email) {
+          msg.style.color = "red";
+          msg.textContent = "Email missing. Please restart signup.";
+          return;
+        }
+
+        if (!name || !usn || !password) {
+          msg.style.color = "red";
+          msg.textContent = "Please fill all fields.";
+          return;
+        }
+
+        msg.style.color = "yellow";
+        msg.textContent = "Creating your account...";
+
+        try {
+          const res = await apiFetch(`/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name,
+              email,
+              usn,
+              password,
+              role: "student",
+            }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            msg.style.color = "red";
+            msg.textContent = data.msg || "Failed to create account.";
+            createBtn.disabled = false;
+            return;
+          }
+
+          msg.style.color = "lightgreen";
+          msg.textContent = "Account created! Redirecting...";
+
+          localStorage.removeItem("signup_email");
+
+          setTimeout(() => {
+            window.location.href = "create-success.html";
+          }, 800);
+        } catch (err) {
+          msg.style.color = "red";
+          msg.textContent = "Server unreachable.";
+          createBtn.disabled = false;
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <script>
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x92cc,
+        backgroundColor: 0x000000,
+        maxDistance: 25.0,
+        spacing: 20.0,
+      });
+    </script>
+  </body>
+</html>
