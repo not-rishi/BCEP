@@ -90,8 +90,8 @@ a {
 
         --orange-box-shadow: 0 0 15px #ff7f00, 0 0 30px #efcb55;
         --blue-box-shadow: 0 0 25px #00c6ff, 0 0 50px #0072ff;
-        --green-box-shadow: 0 0 15px #a6e6a6, 0 0 30px #8fdc8f;
-        --purple-box-shadow: 0 0 25px #b39ddb, 0 0 50px #9575cd,
+        --green-box-shadow: 0 0 25px #a6e6a6, 0 0 50px #8fdc8f;
+        --purple-box-shadow: 0 0 15px #b39ddb, 0 0 30px #9575cd,
           0 0 10px #7e57c2;
       }
 
@@ -171,7 +171,7 @@ a {
         background-color: #272626;
         border: none;
         height: 40px;
-        width: 300px;
+        width: 260px;
         font-size: 20px;
         padding: 5px;
         border-radius: 2px;
@@ -241,7 +241,7 @@ a {
       .btn span {
         position: relative;
         z-index: 2;
-        color:black;
+        color: black;
         font-size: 15px;
         font-weight: 600;
         text-decoration: none;
@@ -253,9 +253,9 @@ a {
         }
 
         .form-container {
-          margin-top: 60px;
-          width: 100%;
+          margin-top: 50px;
           text-align: center;
+          width: 100%;
         }
 
         .form-container h2 {
@@ -280,7 +280,7 @@ a {
           max-width: 250px;
           height: 45px;
           font-size: 16px;
-          margin-top: 25px;
+          margin-top: 20px;
         }
 
         .btn span {
@@ -289,11 +289,11 @@ a {
 
         .footer {
           font-size: 10px;
-          padding: 14px 8px;
+          padding: 12px 5px;
         }
 
         .footer-header {
-          gap: 6px;
+          gap: 5px;
         }
       }
     </style>
@@ -303,23 +303,23 @@ a {
     <script src="../../../config.js"></script>
     <main>
       <div class="form-container" id="emailSection">
-        <h2>Reset your password</h2>
+        <h2>Enter OTP</h2>
 
-        <label for="email">Email Address</label>
-        <form id="emailForm">
-          <div></div>
+        <label for="email">OTP</label>
+        <div></div>
+        <form id="otpForm">
           <input
-            type="email"
-            id="email"
-            placeholder="Enter your @bmsce.ac.in email"
+            type="text"
+            id="otp"
+            placeholder="Enter your 6 digit OTP here"
             required
           />
-          <button class="btn" id="SendForgotOtpBtn">
-            <span>Send OTP</span>
+          <button class="btn" id="VerifyForgotOtpBtn">
+            <span>Verify OTP</span>
           </button>
         </form>
 
-        <p id="emailMessage" class="note"></p>
+        <p id="otpMessage" class="note"></p>
       </div>
     </main>
 
@@ -335,95 +335,60 @@ a {
       <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
     </footer>
     <script>
-      const sendBtn = document.getElementById("SendForgotOtpBtn");
-      const emailField = document.getElementById("email");
-      const msg = document.getElementById("emailMessage");
-      const form = document.getElementById("emailForm");
+      const otpField = document.getElementById("otp");
+      const verifyBtn = document.getElementById("VerifyForgotOtpBtn");
+      const msg = document.getElementById("otpMessage");
 
-      form.addEventListener("submit", (e) => {
+      const email = localStorage.getItem("forgot_email");
+
+      if (!email) {
+        msg.style.color = "red";
+        msg.textContent = "Email missing. Please restart password reset.";
+      }
+
+      otpForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        sendBtn.click();
+        verifyBtn.click();
       });
 
-      const limitKey = "forgot_retry_after";
+      verifyBtn.addEventListener("click", async () => {
+        const otp = otpField.value.trim();
 
-      function startCountdown() {
-        const retryTimestamp = localStorage.getItem(limitKey);
-        if (!retryTimestamp) return;
-
-        const now = Date.now();
-        const remaining = retryTimestamp - now;
-
-        if (remaining <= 0) {
-          localStorage.removeItem(limitKey);
-          sendBtn.disabled = false;
-          msg.textContent = "";
+        if (otp.length < 4) {
+          msg.style.color = "red";
+          msg.textContent = "Enter a valid OTP.";
           return;
         }
 
-        sendBtn.disabled = true;
-
-        const minutes = Math.ceil(remaining / 60000);
-        msg.style.color = "red";
-        msg.textContent = `Try again in ${minutes} min`;
-
-        setTimeout(startCountdown, 1000);
-      }
-      startCountdown();
-
-      sendBtn.addEventListener("click", async () => {
-        const email = emailField.value.trim();
-
-        // if (!email.endsWith("@bmsce.ac.in")) {
-        //   msg.style.color = "red";
-        //   msg.textContent = "Use your @bmsce.ac.in email.";
-        //   return;
-        // }
-
-        sendBtn.disabled = true;
         msg.style.color = "yellow";
-        msg.textContent = "Sending OTP...";
+        msg.textContent = "Verifying OTP...";
 
         try {
-          const res = await apiFetch(`/auth/forgot-password`, {
+          const res = await apiFetch(`/auth/verify-forgot-password`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify({ email, otp }),
           });
 
           const data = await res.json();
 
           if (!res.ok) {
-            if (res.status === 429) {
-              const minutesMatch = data.msg.match(/\d+/);
-              if (minutesMatch) {
-                const minutes = parseInt(minutesMatch[0], 10);
-                const retryTimestamp = Date.now() + minutes * 60000;
-                localStorage.setItem(limitKey, retryTimestamp);
-                startCountdown();
-              }
-            }
-
             msg.style.color = "red";
-            msg.textContent = data.msg || "Failed to send OTP.";
+            msg.textContent = data.msg || "Invalid or expired OTP.";
             return;
           }
 
           msg.style.color = "lightgreen";
-          msg.textContent = "OTP sent successfully! Redirecting...";
+          msg.textContent = "OTP verified! Redirecting...";
 
-          localStorage.setItem("forgot_email", email);
+          localStorage.setItem("forgot_otp", otp);
 
           setTimeout(() => {
-            window.location.href = "reset-otp.html";
+            window.location.href = "reset-password.html";
           }, 800);
         } catch (err) {
           msg.style.color = "red";
           msg.textContent = "Server unreachable.";
-        } finally {
-          if (!localStorage.getItem(limitKey)) {
-            sendBtn.disabled = false;
-          }
         }
       });
     </script>
