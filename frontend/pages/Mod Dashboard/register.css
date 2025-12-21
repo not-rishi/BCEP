@@ -1,0 +1,483 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+:root {
+  --master-grad: linear-gradient(
+    270deg,
+    #ffffff,
+    #00c6ff,
+    #0072ff,
+    #00e5ff,
+    #ffffff,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    white
+  );
+
+  --orange-pulse-nav: linear-gradient(
+    90deg,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    black,
+    black,
+    black,
+    white,
+    rgb(245, 245, 110),
+    orange
+  );
+
+  --orange-grad: linear-gradient(
+    90deg,
+    white,
+    rgb(245, 245, 110),
+    orange,
+    rgb(245, 245, 110),
+    white
+  );
+
+  --blue-box-shadow: 0 0 50px #00c6ff, 0 0 100px #0072ff;
+  --orange-box-shadow: 0 0 50px #ff7f00, 0 0 100px #f2dd9a;
+}
+
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+img {
+  -webkit-user-drag: none; 
+  -webkit-touch-callout: none;
+}
+
+button, a, .theme-event-card, .filter-btn {
+ 
+  touch-action: manipulation;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+#vanta-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; 
+  pointer-events: none; 
+}
+
+main {
+  flex: 1;
+  padding: 25px;
+}
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+nav {
+  margin-top: 15px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  width: 90%;
+  height: 64px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  transition: box-shadow 0.3s ease-in-out;
+  z-index: 9999;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--orange-pulse-nav);
+  background-size: 600% 600%;
+  animation: nav-flow 8s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+nav::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: black;
+  border-radius: calc(50px - 3px);
+  z-index: 1;
+}
+
+nav:hover {
+  box-shadow: 0 0 15px #ff7f00, 0 0 30px #efcb55;
+}
+
+.logo {
+  height: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+.nav-left,
+.nav-right {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+.nav-left img {
+  margin-top: 7px;
+}
+
+.nav-right a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.nav-right a:hover {
+  background: var(--orange-grad);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flow 8s linear infinite;
+}
+
+@keyframes nav-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.page-title {
+  margin-top: 90px;
+  font-size: 2rem;
+  color: rgb(240, 178, 124);
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #ff7f00;
+}
+
+.event-meta-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.event-meta-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--orange-box-shadow);
+}
+
+.event-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.meta-label {
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.reg-box {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 15px;
+  color: orange;
+}
+
+.export-btn {
+  position: relative;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 20px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  background: #0072ff;
+  z-index: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+.export-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--orange-grad);
+  background-size: 600% 600%;
+  animation: flow 8s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.export-btn span,
+.export-btn {
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+  color: rgb(249, 117, 1);
+}
+
+.export-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--orange-box-shadow);
+}
+
+.glass-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+th {
+  font-weight: 600;
+  color: rgb(240, 178, 124);
+}
+#regTable th,
+#regTable td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: rgba(128, 128, 128, 0.7);
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.footer-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 5px;
+}
+
+.footer img {
+  height: 15px;
+  width: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.export-btn.delete-btn::before:hover {
+  background-color: red;
+}
+.export-btn.delete-btn:hover {
+  background: #ff4d4d !important;
+  border-color: #ff4d4d !important;
+  color: white !important;
+  box-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-card {
+  background: #111;
+  border: 1px solid #333;
+  border-top: 3px solid #ff4d4d;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.popup-card h2 {
+  color: #ff4d4d;
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.popup-card p {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 15px 0 25px 0;
+}
+
+.popup-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.popup-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-confirm {
+  background: #ff4d4d;
+  color: white;
+}
+.btn-confirm:hover {
+  background: #cc0000;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid #555;
+  color: #aaa;
+}
+.btn-cancel:hover {
+  border-color: white;
+  color: white;
+}
+.export-btn.delete-btn:hover::before {
+  background: #ff4d4d !important;
+}
+.btn-cancel:hover span {
+  color: white;
+}
+
+.export-btn.delete-btn span {
+  color: #ff4d4d;
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s ease-in-out;
+}
+
+.export-btn.delete-btn:hover span {
+  color: #ffffff !important;
+}
+
+.action-buttons-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 20px 0;
+  align-items: center;
+}
+
+.export-btn {
+  position: relative;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+
+  margin: 0;
+
+  overflow: hidden;
+  background: #0072ff;
+  z-index: 1;
+  transition: all 0.4s ease-in-out;
+}
