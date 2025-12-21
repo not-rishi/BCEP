@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Moderator Dashboard</title>
+    <link rel="icon" type="image/png" href="../../Data/Images/logo.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../Loader/loader.css" />
+
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+
+  <body>
+    <div id="vanta-bg"></div>
+    <div id="loader-wrapper">
+      <img id="loader-logo" src="../../Data/Images/logo.png" alt="Logo" />
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+    <script src="../../Loader/loader.js"></script>
+    <script src="../../config.js"></script>
+    <script>
+      (function () {
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
+
+        if (!token || role !== "moderator") {
+          window.location.href = "../Moderator Login/login.html";
+        }
+      })();
+    </script>
+
+    <main>
+      <div class="nav-container">
+        <nav>
+          <div class="nav-left">
+            <a href="dashboard.html">
+              <img src="../../Data/Images/logo.png" alt="Logo" class="logo" />
+            </a>
+          </div>
+
+          <div class="nav-right">
+            <a href="#" onclick="logout()">Sign Out</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="events-header">
+        <h1>Moderator Dashboard</h1>
+        <button class="create-btn" onclick="openModal()">
+          <a href="create.html"><span>+ Create New Event</span></a>
+        </button>
+      </div>
+
+      <div class="events-grid" id="events"></div>
+
+      <p
+        id="noEvents"
+        style="text-align: center; margin-top: 20px; display: none"
+      >
+        No events created yet.
+      </p>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-header">
+        <img src="../../Data/Images/logo.png" alt="Logo" />
+        <p>BMSCE Club Events</p>
+      </div>
+      <p>
+        Empowering student communities through collaboration, innovation, and
+        creativity.
+      </p>
+      <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
+    </footer>
+
+    <!-- CREATE EVENT MODAL -->
+    <!-- <div class="modal-bg" id="modal-bg">
+      <div class="modal">
+        <h2>Create Event</h2>
+
+        <input type="text" id="ev-title" placeholder="Event Title" />
+        <input type="text" id="ev-club" placeholder="Club Name" />
+        <input type="text" id="ev-date" placeholder="Last Date" />
+        <input type="text" id="ev-img" placeholder="Image URL" />
+        <textarea id="ev-desc" rows="4" placeholder="Description"></textarea>
+
+        <button class="save-btn" onclick="saveEvent()">Save</button>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+      </div>
+    </div> -->
+
+    <script>
+      function openModal() {
+        document.getElementById("modal-bg").style.display = "flex";
+      }
+      function closeModal() {
+        document.getElementById("modal-bg").style.display = "none";
+      }
+
+      function saveEvent() {
+        console.warn("saveEvent() called - create flow lives in create.html");
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const vantaEffect = VANTA.FOG({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          highlightColor: 0x0,
+          midtoneColor: 0xff8100,
+          lowlightColor: 0xffdb00,
+          baseColor: 0x0,
+          speed: 1.0,
+          zoom: 1.5,
+        });
+
+        if (vantaEffect) vantaEffect.resize();
+
+        setTimeout(() => {
+          if (vantaEffect) vantaEffect.resize();
+        }, 500);
+
+        window.addEventListener("resize", () => {
+          if (vantaEffect) vantaEffect.resize();
+        });
+      });
+    </script>
+    <script>
+      async function loadModeratorEvents() {
+        const token = localStorage.getItem("token");
+
+        try {
+          const res = await apiFetch("/events/moderator/my-events", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          const events = await res.json();
+
+          const container = document.getElementById("events");
+          const noEv = document.getElementById("noEvents");
+
+          container.innerHTML = "";
+
+          if (!events || events.length === 0) {
+            noEv.style.display = "block";
+            return;
+          }
+
+          noEv.style.display = "none";
+
+          events.forEach((ev) => {
+            const card = document.createElement("div");
+            card.className = "event-card";
+
+            const eventDateObj = new Date(ev.eventDateTime);
+            const eventDateStr = eventDateObj.toLocaleDateString("en-IN", {
+              month: "short",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
+            // Format the existing Deadline
+            const deadlineDate = new Date(ev.deadline).toLocaleDateString(
+              "en-IN",
+              {
+                month: "short",
+                day: "numeric",
+              }
+            );
+
+            card.innerHTML = `
+        <a href="register.html?id=${
+          ev._id
+        }" class="event-link" style="text-decoration:none;color:inherit;">
+          <div class="event-card-img-wrapper">
+            <img class="poster-bg" src="${
+              ev.posterUrl || "https://placehold.co/600x800"
+            }" />
+            <img class="poster-img" src="${
+              ev.posterUrl || "https://placehold.co/600x800"
+            }" />
+          </div>
+
+          <div class="event-title">${ev.title}</div>
+
+          <div class="event-meta"><b>Club:</b> ${ev.club}</div>
+
+          <div class="event-meta"><b>Event Date:</b> ${eventDateStr}</div>
+
+          <div class="event-meta"><b>Reg Ends:</b> ${deadlineDate}</div>
+
+          <div class="event-desc">${ev.description}</div>
+
+          <div class="event-tags">
+            ${(ev.tags || [])
+              .map((t) => `<span class="tag">${t}</span>`)
+              .join("")}
+          </div>
+        </a>
+      `;
+
+            container.appendChild(card);
+          });
+        } catch (err) {
+          console.error("Error loading moderator events:", err);
+        } finally {
+          const loader = document.getElementById("loader-wrapper");
+          if (loader) {
+            loader.style.opacity = "0";
+            setTimeout(() => {
+              loader.style.display = "none";
+            }, 500);
+          }
+        }
+      }
+
+      loadModeratorEvents();
+    </script>
+    <script>
+      function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        window.location.href = "../../index.html";
+      }
+    </script>
+  </body>
+</html>
