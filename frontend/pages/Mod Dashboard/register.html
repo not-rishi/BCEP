@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Event Status</title>
+    <link rel="icon" type="image/png" href="../../Data/Images/logo.png" />
+    <link rel="stylesheet" href="../../Loader/loader.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="register.css" />
+  </head>
+
+  <body>
+    <div id="vanta-bg"></div>
+    <div id="loader-wrapper">
+      <img id="loader-logo" src="../../Data/Images/logo.png" alt="Logo" />
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+    <script src="../../Loader/loader.js"></script>
+    <script src="../../config.js"></script>
+    <main>
+      <nav>
+        <div class="nav-left">
+          <a href="dashboard.html">
+            <img src="../../Data/Images/logo.png" alt="Logo" class="logo" />
+          </a>
+        </div>
+        <div class="nav-right">
+          <a href="dashboard.html">Back</a>
+        </div>
+      </nav>
+      <div class="page-title" id="eventTitle">Loading...</div>
+
+      <div class="event-meta-box">
+        <div class="event-row">
+          <span class="meta-label"><b>Club:</b></span>
+          <span id="eventClub">Loading...</span>
+        </div>
+
+        <div class="event-row">
+          <span class="meta-label"><b>Event Date:</b></span>
+          <span id="eventDateTime">Loading...</span>
+        </div>
+
+        <div class="event-row">
+          <span class="meta-label"><b>Reg Deadline:</b></span>
+          <span id="eventDate">Loading...</span>
+        </div>
+
+        <div class="reg-box">Registered Count: <b id="regCount">0</b></div>
+      </div>
+
+      <div class="action-buttons-container">
+        <button class="export-btn" onclick="exportCSV()">
+          <span>Export as CSV</span>
+        </button>
+
+        <button class="export-btn" onclick="sendStatusMail()" id="sendMailBtn">
+          <span>Send Status Mail</span>
+          <span id="cooldownTimer"></span>
+        </button>
+
+        <button class="export-btn delete-btn" onclick="openDeletePopup()">
+          <span>🗑️ Delete Event</span>
+        </button>
+      </div>
+
+      <div class="glass-card">
+        <table id="regTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>USN</th>
+              <th>Branch</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-header">
+        <img src="../../Data/Images/logo.png" alt="Logo" />
+        <p>BMSCE Club Events</p>
+      </div>
+      <p>
+        Empowering student communities through collaboration, innovation, and
+        creativity.
+      </p>
+      <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
+    </footer>
+
+    <div id="deletePopup" class="popup-overlay">
+      <div class="popup-card">
+        <h2>Delete Event?</h2>
+        <p>
+          Are you sure you want to remove this event? <br />
+          <b>This cannot be undone.</b> <br /><br />
+          A cancellation email will be sent to all registered students
+          automatically.
+        </p>
+        <div class="popup-actions">
+          <button class="popup-btn btn-confirm" onclick="confirmDeleteEvent()">
+            Yes, Delete
+          </button>
+          <button class="popup-btn btn-cancel" onclick="closeDeletePopup()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function exportCSV() {
+        let table = document.getElementById("regTable");
+        let rows = Array.from(table.querySelectorAll("tr"));
+        let csv = rows
+          .map((row) =>
+            Array.from(row.querySelectorAll("th,td"))
+              .map((cell) => cell.innerText)
+              .join(",")
+          )
+          .join("\n");
+
+        let blob = new Blob([csv], { type: "text/csv" });
+        let url = URL.createObjectURL(blob);
+
+        let a = document.createElement("a");
+        a.href = url;
+        a.download = "registrations.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
+    <script>
+      VANTA.FOG({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        highlightColor: 0x0,
+        midtoneColor: 0xff8100,
+        lowlightColor: 0xffdb00,
+        baseColor: 0x0,
+        speed: 1.0,
+        zoom: 1.3,
+      });
+    </script>
+
+    <script>
+      function getEventId() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("id");
+      }
+    </script>
+
+    <script>
+      const COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes
+
+      function updateCooldownUI() {
+        const btn = document.getElementById("sendMailBtn");
+        const label = btn.querySelector("span");
+        const timer = document.getElementById("cooldownTimer");
+
+        const lastSent = localStorage.getItem("event_mail_last_sent");
+        if (!lastSent) return;
+
+        const remaining = COOLDOWN_MS - (Date.now() - Number(lastSent));
+
+        if (remaining > 0) {
+          btn.disabled = true;
+
+          const sec = Math.floor(remaining / 1000);
+          const min = Math.floor(sec / 60);
+          const s = sec % 60;
+
+          label.textContent = "Cooldown:";
+          timer.textContent = ` ${min}:${s.toString().padStart(2, "0")}`;
+
+          setTimeout(updateCooldownUI, 1000);
+        } else {
+          btn.disabled = false;
+          label.textContent = "Send Status Mail";
+          timer.textContent = "";
+          localStorage.removeItem("event_mail_last_sent");
+        }
+      }
+
+      async function sendStatusMail() {
+        const eventId = getEventId();
+        const token = localStorage.getItem("token");
+
+        const lastSent = localStorage.getItem("event_mail_last_sent");
+        if (lastSent && Date.now() - lastSent < COOLDOWN_MS) {
+          alert("Please wait 5 minutes before sending again.");
+          return;
+        }
+
+        const btn = document.getElementById("sendMailBtn");
+        const label = btn.querySelector("span");
+        const timer = document.getElementById("cooldownTimer");
+
+        btn.disabled = true;
+        label.textContent = "Sending...";
+        timer.textContent = "";
+
+        try {
+          const res = await apiFetch(`/events/${eventId}/send-mail`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            alert(data.msg || "Error sending email.");
+          } else {
+            alert("Status email sent!");
+
+            localStorage.setItem("event_mail_last_sent", Date.now());
+            updateCooldownUI();
+          }
+        } catch (err) {
+          alert("Server unreachable.");
+          console.error(err);
+        }
+
+        label.textContent = "Send Status Mail";
+      }
+
+      updateCooldownUI();
+    </script>
+
+    <script>
+      async function loadEventDetails() {
+        const eventId = getEventId();
+        const token = localStorage.getItem("token");
+
+        if (!eventId) {
+          alert("Invalid event ID");
+          return;
+        }
+
+        try {
+          const eventRes = await apiFetch(`/events/${eventId}`);
+          const eventData = await eventRes.json();
+
+          if (!eventRes.ok) {
+            alert(eventData.msg || "Could not load event");
+            return;
+          }
+
+          document.getElementById("eventTitle").textContent =
+            eventData.title + " Registrations";
+
+          document.getElementById("eventClub").textContent = eventData.club;
+          if (eventData.eventDateTime) {
+            const dt = new Date(eventData.eventDateTime);
+            document.getElementById("eventDateTime").textContent =
+              dt.toLocaleString("en-IN", {
+                dateStyle: "medium",
+                timeStyle: "short",
+              });
+          } else {
+            document.getElementById("eventDateTime").textContent = "N/A";
+          }
+
+          document.getElementById("eventDate").textContent = new Date(
+            eventData.deadline
+          ).toDateString();
+
+          const regRes = await apiFetch(`/events/${eventId}/registrations`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          const regData = await regRes.json();
+
+          if (!regRes.ok) {
+            alert(regData.msg || "Could not load registrations");
+            return;
+          }
+
+          const tbody = document.querySelector("#regTable tbody");
+          tbody.innerHTML = "";
+
+          regData.forEach((user) => {
+            const branch = user.usn
+              ? user.usn.substring(5, 7).toUpperCase()
+              : "-";
+
+            tbody.innerHTML += `
+          <tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.usn || "-"}</td>
+            <td>${user.branch}</td>
+          </tr>`;
+          });
+
+          document.getElementById("regCount").textContent = regData.length;
+        } catch (err) {
+          console.error(err);
+          alert("Server unreachable.");
+        } finally {
+          const loader = document.getElementById("loader-wrapper");
+          if (loader) {
+            loader.style.opacity = "0";
+            setTimeout(() => {
+              loader.style.display = "none";
+            }, 500);
+          }
+        }
+      }
+
+      loadEventDetails();
+
+      function openDeletePopup() {
+        document.getElementById("deletePopup").style.display = "flex";
+      }
+
+      function closeDeletePopup() {
+        document.getElementById("deletePopup").style.display = "none";
+      }
+
+      async function confirmDeleteEvent() {
+        const eventId = getEventId();
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          alert("Error: You are not logged in. (Token not found)");
+          closeDeletePopup();
+          return;
+        }
+
+        const btnConfirm = document.querySelector(".btn-confirm");
+        const originalText = btnConfirm.textContent;
+        btnConfirm.textContent = "Deleting...";
+        btnConfirm.disabled = true;
+
+        try {
+          const res = await apiFetch(`/events/${eventId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            alert("Event deleted successfully. Redirecting to dashboard...");
+            window.location.href = "dashboard.html";
+          } else {
+            console.error("Delete failed:", res.status, data);
+
+            if (res.status === 403) {
+              alert(
+                "Permission Denied: You can only delete events that YOU created."
+              );
+            } else if (res.status === 401) {
+              alert("Session expired. Please log in again.");
+            } else {
+              alert(data.msg || "Failed to delete event");
+            }
+
+            btnConfirm.textContent = originalText;
+            btnConfirm.disabled = false;
+            closeDeletePopup();
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Network error occurred.");
+          btnConfirm.textContent = originalText;
+          btnConfirm.disabled = false;
+          closeDeletePopup();
+        }
+      }
+    </script>
+  </body>
+</html>
