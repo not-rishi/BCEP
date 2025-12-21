@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Create Moderator</title>
+    <link rel="icon" type="image/png" href="../../Data/Images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../Student Login/login.css" />
+
+    <style>
+      body {
+        background-color: #1a0520;
+      }
+      .card h2 {
+        color: #d04dff;
+        border-bottom: 2px solid #d04dff;
+      }
+
+      nav::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          #4b2c7a,
+          #5f3dc4,
+          #7b5cff,
+          #9b7cff,
+          #b983ff,
+          rgba(255, 255, 255, 0),
+          #8e6cff,
+          #4b2c7a,
+          #5f3dc4,
+          #7b5cff,
+          #9b7cff,
+          #b983ff,
+          rgba(255, 255, 255, 0),
+          #8e6cff,
+          #4b2c7a
+        );
+        background-size: 600% 600%;
+        animation: nav-flow 8s linear infinite;
+        border-radius: inherit;
+        z-index: 0;
+      }
+
+      nav :hover {
+        box-shadow: 0 0 20px rgba(123, 92, 255, 0.6),
+          0 0 40px rgba(155, 124, 255, 0.4), 0 0 80px rgba(185, 131, 255, 0.3);
+      }
+
+      .btn {
+        background: linear-gradient(45deg, #d04dff, #9900cc);
+      }
+      .btn:hover {
+        background: linear-gradient(45deg, #9900cc, #660099);
+        box-shadow: 0 0 15px #d04dff;
+      }
+      #loginMessage {
+        font-weight: bold;
+        text-align: center;
+      }
+
+      input:focus {
+        border-color: #d04dff !important;
+        outline: none;
+      }
+
+      .card h2 {
+        margin-top: 1.2rem;
+        text-align: center;
+        margin-bottom: 1.2rem;
+        font-weight: 600;
+        font-size: 40px;
+        background: linear-gradient(
+          135deg,
+          #4b2c7a,
+          #5f3dc4,
+          #7b5cff,
+          #9b7cff,
+          #b983ff,
+          #8e6cff
+        );
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 8s linear infinite;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          #4b2c7a,
+          #5f3dc4,
+          #7b5cff,
+          #9b7cff,
+          #b983ff,
+          #8e6cff
+        );
+        background-size: 600% 600%;
+        animation: flow 8s linear infinite;
+        border-radius: inherit;
+        z-index: 0;
+      }
+      .btn:hover span {
+        background: #ffffff;
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .btn span {
+        position: relative;
+        z-index: 2;
+        color: rgb(255, 255, 255);
+        font-size: 1rem;
+        font-weight: 600;
+        background: linear-gradient(
+          135deg,
+          #4b2c7a,
+          #5f3dc4,
+          #7b5cff,
+          #9b7cff,
+          #b983ff,
+          #8e6cff
+        );
+        background-size: 600% 600%;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 8s linear infinite;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="../../config.js"></script>
+    <div id="vanta-bg"></div>
+
+    <main>
+      <div class="nav-container">
+        <nav>
+          <div class="nav-left">
+            <a href="../../index.html">
+              <img src="../../Data/Images/logo.png" alt="Logo" class="logo" />
+            </a>
+          </div>
+          <div class="nav-right">
+            <a href="login.html">Back to Login</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="card-container">
+        <div class="card">
+          <h2>Create Mod Account</h2>
+          <form id="modForm">
+            <div class="form-group">
+              <label for="secret" style="color: #d04dff"
+                >Admin Secret Key</label
+              >
+              <input
+                type="password"
+                id="secret"
+                placeholder="Enter secret key "
+                required
+                style="border: 1px solid #d04dff"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Moderator Name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="moderator@bmsce.ac.in"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Create Password"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn">
+              <span>Create Moderator</span>
+            </button>
+
+            <p id="msg" style="margin-top: 15px; text-align: center"></p>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const API_BASE = `${window.API_BASE_URL}`;
+      const msg = document.getElementById("msg");
+
+      document
+        .getElementById("modForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const adminSecret = document.getElementById("secret").value;
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          msg.style.color = "yellow";
+          msg.textContent = "Creating account...";
+
+          try {
+            const res = await apiFetch("/auth/create-mod", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, email, password, adminSecret }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+              msg.style.color = "#00ff00";
+              msg.textContent = "SUCCESS! Moderator account created.";
+              document.getElementById("modForm").reset();
+            } else {
+              msg.style.color = "#ff4d4d"; // Keep error red
+              msg.textContent = data.msg || "Creation failed";
+            }
+          } catch (err) {
+            console.error(err);
+            msg.style.color = "#ff4d4d";
+            msg.textContent = "Server unreachable";
+          }
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0xd04dff,
+        backgroundColor: 0x1a0520,
+        points: 12.0,
+        maxDistance: 22.0,
+        spacing: 18.0,
+      });
+    </script>
+  </body>
+</html>
