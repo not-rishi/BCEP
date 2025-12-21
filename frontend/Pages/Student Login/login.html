@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Student Login</title>
+    <link rel="icon" type="image/png" href="../../Data/Images/logo.png" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div id="vanta-bg"></div>
+    <script src="../../config.js"></script>
+    <main>
+      <div class="nav-container">
+        <nav>
+          <div class="nav-left">
+            <a href="landing.html">
+              <img src="../../Data/Images/logo.png" alt="Logo" class="logo" />
+            </a>
+          </div>
+          <div class="nav-right">
+            <a href="../../index.html">Home</a>
+            <a href="../landing/about.html">About</a>
+          </div>
+        </nav>
+      </div>
+      <div class="card-container">
+        <div class="card">
+          <h2>Student Login</h2>
+          <form>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="password-wrapper">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                />
+                <img
+                  src="../../Data/Images/eye-close.png"
+                  class="eye-icon"
+                  onclick="togglePasswordImg('password', this)"
+                  alt="toggle visibility"
+                />
+              </div>
+            </div>
+            <div class="actions">
+              <div></div>
+              <a href="Reset/reset-email.html">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn" id="LoginBtn">
+              <span>Login</span>
+            </button>
+            <p id="loginMessage" style="margin-top: 10px; font-size: 14px"></p>
+            <div class="create-account">
+              <p>Don't have an account?</p>
+              <a href="Create/create-email.html">Create New Account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-header">
+        <img src="../../Data/Images/logo.png" alt="Logo" />
+        <p>BMSCE Club Events</p>
+      </div>
+      <p>
+        Empowering student communities through collaboration, innovation, and
+        creativity.
+      </p>
+      <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
+    </footer>
+    <script>
+      function togglePasswordImg(id, el) {
+        const field = document.getElementById(id);
+        if (field.type === "password") {
+          field.type = "text";
+          el.src = "../../Data/Images/eye-open.png";
+        } else {
+          field.type = "password";
+          el.src = "../../Data/Images/eye-close.png";
+        }
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
+    <script>
+      VANTA.FOG({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        highlightColor: 0x0,
+        midtoneColor: 0xc5ff,
+        lowlightColor: 0x9400ff,
+        baseColor: 0x0,
+        speed: 1.0,
+        zoom: 0.7,
+      });
+    </script>
+    <script>
+      const loginForm = document.querySelector("form");
+      const loginMsg = document.getElementById("loginMessage");
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("token");
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        loginMsg.style.color = "yellow";
+        loginMsg.textContent = "Logging in...";
+        try {
+          const res = await apiFetch("/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            loginMsg.style.color = "red";
+            loginMsg.textContent = data.msg || "Invalid credentials.";
+            return;
+          }
+          loginMsg.style.color = "lightgreen";
+          loginMsg.textContent = "Login successful! Redirecting...";
+          localStorage.setItem("auth_token", data.token);
+          setTimeout(() => {
+            window.location.href = "../Student Dashboard/dashboard.html";
+          }, 700);
+        } catch (err) {
+          console.error(err);
+          loginMsg.style.color = "red";
+          loginMsg.textContent = "Server unreachable.";
+        }
+      });
+    </script>
+  </body>
+</html>
