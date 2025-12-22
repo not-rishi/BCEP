@@ -17,7 +17,7 @@ BCEP is a centralized, automated event management ecosystem designed for BMS Col
 <p align="center"><small><em>See all active registrations happening at a glance. No login needed.</em></small></p>
 
 ### Login Page
-![Landing Page](Readme%20Assets/login.png)
+![Login Page](Readme%20Assets/login.png)
 <p align="center"><small><em>Fast login, faster access.</em></small></p>
 
 
@@ -43,14 +43,14 @@ BCEP is a centralized, automated event management ecosystem designed for BMS Col
 
 ---
 
-### Email Previews
+## Email Previews
 
-#### Stylised OTP Email
-![OTP Email](readme%20assets/email-otp.png)
+![Event Registered](Readme%20Assets/register-email.png)
+<br>
 
-#### Successful Registration Email
-![Registration Success](readme%20assets/email-success.png)
-
+<br>
+![Registration Success](readme%20assets/cancel-email.png)
+<p align="center"><small><em>Smart email notifications so nothing slips by.</em></small></p>
 
 ---
 
