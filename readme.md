@@ -1,16 +1,40 @@
 <p align="center">
-  <img src="backend/assets/logo.png" width="120" />
+  <img src="backend/assets/logo.png" width="150" alt="BCEP Logo" />
 </p>
 
-# BMSCE Club Events Portal (BCEP)
+<h1 align="center">BMSCE Club Events Portal (BCEP)</h1>
 
-BCEP is a centralized, automated event management ecosystem designed for BMS College of Engineering. It streamlines the lifecycle of campus events—from moderator creation and student registration to automated attendance reporting—using a high-performance, framework-less frontend and a robust Node.js backend.
+<p align="center">
+  <strong>The definitive, automated event management ecosystem for BMS College of Engineering.</strong>
+  <br />
+  <em>Streamlining campus life from registration to automated reporting.</em>
+</p>
 
-## Preview
-
-*All screenshots and email previews are stored in the `Readme Assets` directory.*
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-Vanilla_JS-yellow?style=for-the-badge&logo=javascript" alt="Vanilla JS" />
+  <img src="https://img.shields.io/badge/Backend-Node.js-green?style=for-the-badge&logo=node.js" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Security-JWT-black?style=for-the-badge&logo=json-web-tokens" alt="JWT" />
+</p>
 
 ---
+
+## Overview
+
+**BCEP** is a high-performance event management platform designed to eliminate the friction of campus event coordination. By moving away from heavy frameworks on the frontend, BCEP achieves **near-instant load times** while maintaining a robust, scalable Node.js backend to handle the heavy lifting of student data and automated reporting.
+
+### Key Features
+* **Zero-Framework Frontend:** Built with pure HTML5/CSS3 and Vanilla JS for maximum browser compatibility and speed.
+* **Automated Lifecycle:** Events close themselves. Reports email themselves. You just host.
+* **Smart USN Parsing:** Automatically detects and maps branches (CSE, ISE, ECE, etc.) directly from student USNs.
+* **Moderator Suite:** A powerful command center for club leads to track registrations in real-time and export data with a single click.
+
+---
+
+## Interface Preview
+
+<details>
+<summary><b> ✨ Click here to view screenshots</b></summary>
 
 ### Landing Page
 ![Landing Page](Readme%20Assets/landing.png)
@@ -20,13 +44,12 @@ BCEP is a centralized, automated event management ecosystem designed for BMS Col
 ![Login Page](Readme%20Assets/login.png)
 <p align="center"><small><em>Fast login, faster access.</em></small></p>
 
-
 ### Student Dashboard
-![Student Dashboard](Readme%20Assets/dashboard-1.png)
-<br>
-<br>
-
-![Student Dashboard](Readme%20Assets/dashboard-2.png)
+<div align="center">
+  <img src="Readme%20Assets/dashboard-1.png" width="90%" />
+  <br><br>
+  <img src="Readme%20Assets/dashboard-2.png" width="90%" />
+</div>
 <p align="center"><small><em>Smart filters, seamless experience, stunning dashboard.</em></small></p>
 
 ### Student Event Registration
@@ -41,16 +64,15 @@ BCEP is a centralized, automated event management ecosystem designed for BMS Col
 ![Moderator Event View](Readme%20Assets/event-control.png)
 <p align="center"><small><em>Track registrations live, export data instantly, or delete the event when needed.</em></small></p>
 
----
-
-## Email Previews
-
-![Event Registered](Readme%20Assets/register-email.png)
-<br>
-
-<br>
-![Registration Success](readme%20assets/cancel-email.png)
+### Email Previews
+<div align="center">
+  <img src="Readme%20Assets/register-email.png" width="90%" />
+  <br><br>
+  <img src="Readme%20Assets/cancel-email.png" width="90%" />
+</div>
 <p align="center"><small><em>Smart email notifications so nothing slips by.</em></small></p>
+
+</details>
 
 ---
 
@@ -297,3 +319,20 @@ The API is organized into two primary arteries: Authentication and Event Managem
     ```
 
 
+---
+
+<p align="center">
+  <a href="#bmsce-club-events-portal-bcep">Back to Top</a> • 
+  <a href="https://github.com/not-rishi/BCEP/issues">Report Bug</a> • 
+  <a href="https://github.com/not-rishi/BCEP/pulls">Request Feature</a>
+</p>
+
+<table align="center">
+  <tr>
+    <td align="center" width="600">
+      <b>BMSCE College Events Portal</b><br>
+      Standardizing campus engagement through automated event lifecycles.<br>
+      <sub>Maintained by <b>not-rishi</b> • © 2025</sub>
+    </td>
+  </tr>
+</table>
