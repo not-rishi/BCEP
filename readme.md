@@ -8,26 +8,38 @@ BCEP is a centralized, automated event management ecosystem designed for BMS Col
 
 ## Preview
 
-All screenshots and email previews are stored in the `` directory.
+*All screenshots and email previews are stored in the `Readme Assets` directory.*
 
 ---
 
-### Web Application
+### Landing Page
+![Landing Page](Readme%20Assets/landing.png)
+<p align="center"><small><em>See all active registrations happening at a glance. No login needed.</em></small></p>
 
-#### Landing Page
-![Landing Page](readme%20assets/landing.png)
+### Login Page
+![Landing Page](Readme%20Assets/login.png)
+<p align="center"><small><em>Fast login, faster access.</em></small></p>
 
-#### Student Dashboard
-![Student Dashboard](readme%20assets/student-dashboard.png)
 
-#### Student Event Registration
-![Student Register](readme%20assets/student-register.png)
+### Student Dashboard
+![Student Dashboard](Readme%20Assets/dashboard-1.png)
+<br>
+<br>
 
-#### Moderator Dashboard
-![Moderator Dashboard](readme%20assets/mod-dashboard.png)
+![Student Dashboard](Readme%20Assets/dashboard-2.png)
+<p align="center"><small><em>Smart filters, seamless experience, stunning dashboard.</em></small></p>
 
-#### Moderator Event View
-![Moderator Event View](readme%20assets/mod-event-view.png)
+### Student Event Registration
+![Student Register](Readme%20Assets/event.png)
+<p align="center"><small><em>One-click event registration. Cancel anytime before the deadline.</em></small></p>
+
+### Moderator Dashboard
+![Moderator Dashboard](Readme%20Assets/mod-dashboard.png)
+<p align="center"><small><em>View all your events in one powerful moderator dashboard.</em></small></p>
+
+### Moderator Event View
+![Moderator Event View](Readme%20Assets/event-control.png)
+<p align="center"><small><em>Track registrations live, export data instantly, or delete the event when needed.</em></small></p>
 
 ---
 
@@ -46,6 +58,110 @@ All screenshots and email previews are stored in the `` directory.
 
 ```text
 BCEP/
+├── backend/
+│   ├── assets/
+│   │   └── logo.png
+│   ├── src/
+│   │   ├── config/
+│   │   │   ├── cloudinary.js
+│   │   │   └── db.js
+│   │   ├── controllers/
+│   │   │   ├── auth.controller.js
+│   │   │   └── event.controller.js
+│   │   ├── middleware/
+│   │   │   ├── auth.js
+│   │   │   ├── authMiddleware.js
+│   │   │   ├── role.js
+│   │   │   └── upload.js
+│   │   ├── models/
+│   │   │   ├── event.js
+│   │   │   └── user.js
+│   │   ├── routes/
+│   │   │   ├── auth.routes.js
+│   │   │   └── event.routes.js
+│   │   ├── utils/
+│   │   │   ├── branchMap.js
+│   │   │   ├── createCsv.js
+│   │   │   ├── emailRateLimit.js
+│   │   │   ├── emailTemplates.js
+│   │   │   ├── scheduler.js
+│   │   │   └── sendEmail.js
+│   │   └── app.js
+│   ├── .env
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── Data/
+│   │   ├── Clubs/
+│   │   │   └── Slideshow/
+│   │   │       ├── addix-1.jpg
+│   │   │       ├── addix-2.jpg
+│   │   │       ├── addix-3.jpg
+│   │   │       ├── Ai-verse.jpg
+│   │   │       ├── bull-1.jpg
+│   │   │       ├── bull-2.jpg
+│   │   │       ├── ieee-1.jpg
+│   │   │       ├── Moutaineering Club.jpg
+│   │   │       ├── ninaad-1.jpg
+│   │   │       ├── rando-1.jpg
+│   │   │       └── wemp-1.jpg
+│   │   └── Images/
+│   │       ├── arch.png
+│   │       ├── eye-close.png
+│   │       ├── eye-open.png
+│   │       ├── filter-black.svg
+│   │       ├── filter.svg
+│   │       └── logo.png
+│   ├── Loader/
+│   │   ├── loader.css
+│   │   └── loader.js
+│   ├── Pages/
+│   │   ├── landing/
+│   │   │   ├── about.css
+│   │   │   ├── about.html
+│   │   │   ├── login.css
+│   │   │   └── login.html
+│   │   ├── Mod Dashboard/
+│   │   │   ├── create.css
+│   │   │   ├── create.html
+│   │   │   ├── dashboard.css
+│   │   │   ├── dashboard.html
+│   │   │   ├── register.css
+│   │   │   └── register.html
+│   │   ├── Mod Login/
+│   │   │   ├── login.css
+│   │   │   ├── login.html
+│   │   │   └── mod-create.html
+│   │   ├── Student Dashboard/
+│   │   │   ├── dashboard.css
+│   │   │   ├── dashboard.html
+│   │   │   ├── profile.css
+│   │   │   ├── profile.html
+│   │   │   ├── register.css
+│   │   │   └── register.html
+│   │   └── Student Login/
+│   │       ├── Create/
+│   │       │   ├── create-account.html
+│   │       │   ├── create-email.html
+│   │       │   ├── create-otp.html
+│   │       │   ├── create-success.html
+│   │       │   └── welcome.json
+│   │       ├── Reset/
+│   │       │   ├── reset-email.html
+│   │       │   ├── reset-otp.html
+│   │       │   ├── reset-password.html
+│   │       │   ├── reset-success.html
+│   │       │   └── success.json
+│   │       ├── login.css
+│   │       └── login.html
+│   ├── config.js
+│   ├── index.html
+│   └── landing.css
+├── Readme Assets/
+│   └── .gitkeep
+├── .gitignore
+└── readme.md
+
 ```
 ---
 
