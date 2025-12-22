@@ -245,9 +245,6 @@ The API is organized into two primary arteries: Authentication and Event Managem
 
 
 
-[Image of REST API architecture diagram]
-
-
 ### Authentication and Profile Management
 **Base Path:** `/auth`
 
