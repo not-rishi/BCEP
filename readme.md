@@ -158,10 +158,17 @@ BCEP/
 │   ├── index.html
 │   └── landing.css
 ├── Readme Assets/
-│   └── .gitkeep
+│   ├── cancel-email.png
+│   ├── dashboard-1.png
+│   ├── dashboard-2.png
+│   ├── event-control.png
+│   ├── event.png
+│   ├── landing.png
+│   ├── login.png
+│   ├── mod-dashboard.png
+│   └── register-email.png
 ├── .gitignore
 └── readme.md
-
 ```
 ---
 
