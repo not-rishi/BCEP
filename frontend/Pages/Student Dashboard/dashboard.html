@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Student Dashboard</title>
+    <link rel="icon" type="image/png" href="../../Data/Images/logo.png" />
+    <link rel="stylesheet" href="../../Loader/loader.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div id="loader-wrapper">
+      <img id="loader-logo" src="../../Data/Images/logo.png" alt="Logo" />
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+    <script src="../../Loader/loader.js"></script>
+    <script src="../../config.js"></script>
+    <div id="vanta-bg"></div>
+    <nav>
+      <div class="nav-left">
+        <a href="dashboard.html">
+          <img src="../../Data/Images/logo.png" class="logo" />
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="profile.html">Profile</a>
+        <a href="#" onclick="signOut()">Sign Out</a>
+      </div>
+    </nav>
+    <div class="events-head-left">
+      <div class="welcome-glass" id="spotlight-card">
+        <div class="glass-content">
+          <h1>Welcome to BMSCE Club Events</h1>
+          <p>
+            Discover and register for exciting events happening across campus!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="infinite-slider">
+      <div class="slide-track" id="sliderTrack">
+        <img src="../../Data/Clubs/Slideshow/addix-1.jpg" />
+        <img src="../../Data/Clubs/Slideshow/Ai-verse.jpg" />
+        <img src="../../Data/Clubs/Slideshow/bull-1.jpg" />
+        <img src="../../Data/Clubs/Slideshow/addix-2.jpg" />
+        <img src="../../Data/Clubs/Slideshow/bull-2.jpg" />
+        <img src="../../Data/Clubs/Slideshow/ieee-1.jpg" />
+        <img src="../../Data/Clubs/Slideshow/Moutaineering Club.jpg" />
+        <img src="../../Data/Clubs/Slideshow/addix-3.jpg" />
+        <img src="../../Data/Clubs/Slideshow/rando-1.jpg" />
+        <img src="../../Data/Clubs/Slideshow/wemp-1.jpg" />
+      </div>
+    </div>
+    <div class="filter-control-area">
+      <button id="toggleFilterBtn" class="master-filter-btn">
+        <div class="icon-default">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <defs>
+              <linearGradient
+                id="gradDefault"
+                x1="4.47"
+                x2="19.53"
+                y1="19.53"
+                y2="4.47"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0" stop-color="#5433ff"></stop>
+                <stop offset="1" stop-color="#20bdff"></stop>
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#gradDefault)"
+              d="m3,7.75h2.326c.349,1.709,1.863,3,3.674,3s3.326-1.291,3.674-3h8.326c.414,0,.75-.336.75-.75s-.336-.75-.75-.75h-8.326c-.349-1.709-1.863-3-3.674-3s-3.326,1.291-3.674,3h-2.326c-.414,0-.75.336-.75.75s.336.75.75.75Zm6-3c1.241,0,2.25,1.01,2.25,2.25s-1.009,2.25-2.25,2.25-2.25-1.01-2.25-2.25,1.009-2.25,2.25-2.25Zm12,11.5h-2.326c-.349-1.709-1.863-3-3.674-3s-3.326,1.291-3.674,3H3c-.414,0-.75.336-.75.75s.336.75.75.75h8.326c.349,1.709,1.863,3,3.674,3s3.326-1.291,3.674-3h2.326c.414,0,.75-.336.75-.75s-.336-.75-.75-.75Zm-6,3c-1.241,0-2.25-1.01-2.25-2.25s1.009-2.25,2.25-2.25,2.25,1.01,2.25,2.25-1.009,2.25-2.25,2.25Z"
+            ></path>
+          </svg>
+        </div>
+        <div class="icon-active-state">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <defs>
+              <linearGradient
+                id="gradActive"
+                x1="4.47"
+                x2="19.53"
+                y1="19.53"
+                y2="4.47"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0" stop-color="#000000"></stop>
+                <stop offset="1" stop-color="#8f8f8f"></stop>
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#gradActive)"
+              d="m3,7.75h2.326c.349,1.709,1.863,3,3.674,3s3.326-1.291,3.674-3h8.326c.414,0,.75-.336.75-.75s-.336-.75-.75-.75h-8.326c-.349-1.709-1.863-3-3.674-3s-3.326,1.291-3.674,3h-2.326c-.414,0-.75.336-.75.75s.336.75.75.75Zm6-3c1.241,0,2.25,1.01,2.25,2.25s-1.009,2.25-2.25,2.25-2.25-1.01-2.25-2.25,1.009-2.25,2.25-2.25Zm12,11.5h-2.326c-.349-1.709-1.863-3-3.674-3s-3.326,1.291-3.674,3H3c-.414,0-.75.336-.75.75s.336.75.75.75h8.326c.349,1.709,1.863,3,3.674,3s3.326-1.291,3.674-3h2.326c.414,0,.75-.336.75-.75s-.336-.75-.75-.75Zm-6,3c-1.241,0-2.25-1.01-2.25-2.25s1.009-2.25,2.25-2.25,2.25,1.01,2.25,2.25-1.009,2.25-2.25,2.25Z"
+            ></path>
+          </svg>
+        </div>
+        <span>Filter Options</span>
+        <span id="arrowIcon">▼</span>
+      </button>
+      <div id="filterDrawer" class="filter-drawer">
+        <div class="filter-row">
+          <span class="filter-label">By Deadline:</span>
+          <input type="date" id="dateFilterInput" class="glass-date-input" />
+          <button
+            id="clearDateBtn"
+            class="clear-date-btn"
+            style="display: none"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">By Category:</span>
+          <div class="filters-wrapper">
+            <div class="events-filters">
+              <button class="filter-btn active" data-filter="all">
+                📁 All Events
+              </button>
+              <button class="filter-btn" data-filter="workshop">
+                🛠 Workshop
+              </button>
+              <button class="filter-btn" data-filter="coding">💻 Coding</button>
+              <button class="filter-btn" data-filter="hackathon">
+                ⚡ Hackathon
+              </button>
+              <button class="filter-btn" data-filter="quiz">❓ Quiz</button>
+              <button class="filter-btn" data-filter="science">
+                🔬 Science
+              </button>
+              <button class="filter-btn" data-filter="electronics">
+                📡 Electronics
+              </button>
+              <button class="filter-btn" data-filter="robotics">
+                🤖 Robotics
+              </button>
+              <button class="filter-btn" data-filter="ai-ml">🧠 AI / ML</button>
+              <button class="filter-btn" data-filter="innovation">
+                💡 Innovation
+              </button>
+              <button class="filter-btn" data-filter="presentation">
+                🗂 Presentation
+              </button>
+              <button class="filter-btn" data-filter="public-speaking">
+                🗣 Public Speaking
+              </button>
+              <button class="filter-btn" data-filter="leadership">
+                👑 Leadership
+              </button>
+              <button class="filter-btn" data-filter="placement">
+                💼 Placement
+              </button>
+              <button class="filter-btn" data-filter="internship">
+                🧳 Internship
+              </button>
+              <button class="filter-btn" data-filter="research">
+                📘 Research
+              </button>
+              <button class="filter-btn" data-filter="seminar">
+                🎓 Seminar
+              </button>
+              <button class="filter-btn" data-filter="gaming">🎮 Gaming</button>
+              <button class="filter-btn" data-filter="fun">🎉 Fun</button>
+              <button class="filter-btn" data-filter="music">🎶 Music</button>
+              <button class="filter-btn" data-filter="cultural">
+                🎭 Cultural
+              </button>
+              <button class="filter-btn" data-filter="arts">🎨 Arts</button>
+              <button class="filter-btn" data-filter="photography">
+                📸 Photography
+              </button>
+              <button class="filter-btn" data-filter="drama">🎭 Drama</button>
+              <button class="filter-btn" data-filter="debate">🗣 Debate</button>
+              <button class="filter-btn" data-filter="outdoor">
+                🌿 Outdoor
+              </button>
+              <button class="filter-btn" data-filter="adventure">
+                ⛰ Adventure
+              </button>
+              <button class="filter-btn" data-filter="sports">🏅 Sports</button>
+              <button class="filter-btn" data-filter="social">🤝 Social</button>
+              <button class="filter-btn" data-filter="live">🎤 Live</button>
+              <button class="filter-btn" data-filter="building">
+                🏗 Building
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-card">
+      <section class="content">
+        <section class="events-section">
+          <h2>Upcoming Events</h2>
+          <div class="events-container" id="eventsContainer"></div>
+          <p id="noEventsMessage" class="no-events" style="display: none">
+            😕 Oops! No upcoming events right now.
+          </p>
+        </section>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="footer-header">
+        <img src="../../Data/Images/logo.png" alt="Logo" />
+        <p>BMSCE Club Events</p>
+      </div>
+      <p>Empowering student communities through creativity and innovation.</p>
+      <p class="copyright">© 2025 BMSCE Club Events. All rights reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
+    <script>
+      let vantaEffect = VANTA.FOG({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        highlightColor: 0x0,
+        midtoneColor: 0xc5ff,
+        lowlightColor: 0x9400ff,
+        baseColor: 0x0,
+        speed: 1.0,
+        zoom: 0.7,
+      });
+      window.addEventListener("load", () => {
+        if (vantaEffect && vantaEffect.resize) vantaEffect.resize();
+        setTimeout(
+          () => vantaEffect && vantaEffect.resize && vantaEffect.resize(),
+          300
+        );
+      });
+      window.addEventListener("resize", () => {
+        if (vantaEffect && vantaEffect.resize) vantaEffect.resize();
+      });
+    </script>
+    <script>
+      const BACKUP_IMAGES = [
+        "../../Data/Clubs/Slideshow/addix-1.jpg",
+        "../../Data/Clubs/Slideshow/Ai-verse.jpg",
+        "../../Data/Clubs/Slideshow/bull-1.jpg",
+        "../../Data/Clubs/Slideshow/addix-2.jpg",
+        "../../Data/Clubs/Slideshow/bull-2.jpg",
+        "../../Data/Clubs/Slideshow/ieee-1.jpg",
+        "../../Data/Clubs/Slideshow/Moutaineering Club.jpg",
+        "../../Data/Clubs/Slideshow/addix-3.jpg",
+        "../../Data/Clubs/Slideshow/rando-1.jpg",
+        "../../Data/Clubs/Slideshow/wemp-1.jpg",
+      ];
+      async function loadEvents() {
+        try {
+          console.log("Fetching events...");
+          const res = await apiFetch("/events/all");
+          const events = await res.json();
+          console.log("Events received:", events);
+          events.sort((a, b) => {
+            const dateA = new Date(a.eventDateTime || a.deadline);
+            const dateB = new Date(b.eventDateTime || b.deadline);
+            return dateA - dateB;
+          });
+          const container = document.getElementById("eventsContainer");
+          const noEvents = document.getElementById("noEventsMessage");
+          container.innerHTML = "";
+          if (!events || events.length === 0) {
+            noEvents.style.display = "block";
+            setupSlider([]);
+            return;
+          } else {
+            noEvents.style.display = "none";
+          }
+          events.forEach((ev) => {
+            const card = document.createElement("a");
+            card.href = `register.html?id=${ev._id}`;
+            card.className = "theme-event-card";
+            card.style.textDecoration = "none";
+            let displayDate = "TBA";
+            let filterDate = "";
+            if (ev.eventDateTime) {
+              const dt = new Date(ev.eventDateTime);
+              const d = dt.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              });
+              const t = dt.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              displayDate = `${d} • ${t}`;
+              filterDate = dt.toISOString().split("T")[0];
+            } else {
+              displayDate =
+                new Date(ev.deadline).toDateString().slice(4, 10) + " (End)";
+              filterDate = new Date(ev.deadline).toISOString().split("T")[0];
+            }
+
+            card.setAttribute("data-deadline", filterDate);
+            const tagHTML = (ev.tags || [])
+              .map((tag) => `<span class="tag" data-tag="${tag}">${tag}</span>`)
+              .join("");
+            const posterSrc = ev.posterUrl
+              ? ev.posterUrl
+              : typeof BACKUP_IMAGES !== "undefined"
+              ? BACKUP_IMAGES[0]
+              : "";
+            card.innerHTML = `
+          <div class="event-left">
+            <h3 class="event-title">${ev.title}</h3>
+            <p class="club-name">${ev.club}</p>
+            <p class="icon-text"><svg version="1.0" id="pin-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" fill="#000000" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path fill="#000000" d="M32,52.789l-12-18C18.5,32,16,28.031,16,24c0-8.836,7.164-16,16-16s16,7.164,16,16 c0,4.031-2.055,8-4,10.789L32,52.789z"></path> <g> <path fill="#00fffb" d="M32,0C18.746,0,8,10.746,8,24c0,5.219,1.711,10.008,4.555,13.93c0.051,0.094,0.059,0.199,0.117,0.289 l16,24C29.414,63.332,30.664,64,32,64s2.586-0.668,3.328-1.781l16-24c0.059-0.09,0.066-0.195,0.117-0.289 C54.289,34.008,56,29.219,56,24C56,10.746,45.254,0,32,0z M44,34.789l-12,18l-12-18C18.5,32,16,28.031,16,24 c0-8.836,7.164-16,16-16s16,7.164,16,16C48,28.031,45.945,32,44,34.789z"></path> <circle fill="#00fffb" cx="32" cy="24" r="8"></circle> </g> </g> </g></svg>
+               ${ev.venue || "Venue not provided"}</p>
+            <div class="event-tags">${tagHTML}</div>
+            <div class="hover-row">
+              <img src="${posterSrc}" class="event-img" />
+              <p class="event-desc">${ev.description}</p>
+            </div>
+          </div>
+          <div class="event-right">
+             <p class="event-date">📅 ${displayDate}</p>
+          </div>
+        `;
+            if (container) container.appendChild(card);
+          });
+          setupFilters();
+          setupSlider(events);
+        } catch (err) {
+          console.error("Failed to load events:", err);
+          setupSlider([]);
+        } finally {
+          if (window.hideCustomLoader) {
+            window.hideCustomLoader();
+          }
+        }
+      }
+      function setupSlider(events) {
+        const track = document.getElementById("sliderTrack");
+        if (!track) return;
+        let sliderItems = [];
+        if (events && events.length > 0) {
+          sliderItems = events
+            .filter((ev) => ev.posterUrl && ev.posterUrl.trim() !== "")
+            .map((ev) => ({
+              type: "real",
+              url: ev.posterUrl,
+              id: ev._id,
+            }));
+        }
+        const MIN_ITEMS = 10;
+        let i = 0;
+        while (sliderItems.length < MIN_ITEMS) {
+          sliderItems.push({
+            type: "backup",
+            url: BACKUP_IMAGES[i % BACKUP_IMAGES.length],
+            id: null,
+          });
+          i++;
+        }
+        const seamlessList = [...sliderItems, ...sliderItems];
+        track.innerHTML = seamlessList
+          .map((item) => {
+            if (item.type === "real" && item.id) {
+              return `
+          <a href="register.html?id=${item.id}" class="slider-item-link">
+            <img src="${item.url}" alt="Event Poster" />
+          </a>`;
+            } else {
+              return `
+          <div class="slider-item-static">
+             <img src="${item.url}" alt="Decorative Poster" />
+          </div>`;
+            }
+          })
+          .join("");
+      }
+      loadEvents();
+    </script>
+    <script>
+      const toggleBtn = document.getElementById("toggleFilterBtn");
+      const drawer = document.getElementById("filterDrawer");
+      const arrow = document.getElementById("arrowIcon");
+      let currentFilter = {
+        tag: "all",
+        date: "",
+      };
+      if (toggleBtn && drawer && arrow) {
+        toggleBtn.addEventListener("click", () => {
+          drawer.classList.toggle("open");
+          toggleBtn.classList.toggle("active");
+          if (drawer.classList.contains("open")) {
+            arrow.style.transform = "rotate(180deg)";
+          } else {
+            arrow.style.transform = "rotate(0deg)";
+          }
+        });
+      }
+      function runMainFilter() {
+        const cards = document.querySelectorAll(".theme-event-card");
+        const noEvents = document.getElementById("noEventsMessage");
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const cardTags = [...card.querySelectorAll(".tag")].map(
+            (t) => t.dataset.tag
+          );
+          const cardDate = card.dataset.deadline;
+          const tagMatch =
+            currentFilter.tag === "all" || cardTags.includes(currentFilter.tag);
+          const dateMatch =
+            currentFilter.date === "" || cardDate === currentFilter.date;
+          if (tagMatch && dateMatch) {
+            card.style.display = "flex";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+        if (visibleCount === 0) {
+          if (noEvents) {
+            noEvents.style.display = "block";
+            noEvents.innerText = "😕 No events found with these filters.";
+          }
+        } else {
+          if (noEvents) noEvents.style.display = "none";
+        }
+      }
+
+      function setupFilters() {
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        filterButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document
+              .querySelector(".filter-btn.active")
+              ?.classList.remove("active");
+            btn.classList.add("active");
+            currentFilter.tag = btn.dataset.filter;
+            runMainFilter();
+          });
+        });
+        const dateInput = document.getElementById("dateFilterInput");
+        const clearDateBtn = document.getElementById("clearDateBtn");
+        if (dateInput) {
+          dateInput.addEventListener("change", (e) => {
+            currentFilter.date = e.target.value;
+            if (currentFilter.date) {
+              if (clearDateBtn) clearDateBtn.style.display = "inline-block";
+            } else {
+              if (clearDateBtn) clearDateBtn.style.display = "none";
+            }
+            runMainFilter();
+          });
+        }
+        if (clearDateBtn) {
+          clearDateBtn.addEventListener("click", () => {
+            if (dateInput) dateInput.value = "";
+            currentFilter.date = "";
+            clearDateBtn.style.display = "none";
+            runMainFilter();
+          });
+        }
+      }
+      loadEvents();
+    </script>
+    <script>
+      const card = document.getElementById("spotlight-card");
+      if (card) {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty("--mouse-x", `${x}px`);
+          card.style.setProperty("--mouse-y", `${y}px`);
+        });
+      }
+    </script>
+    <script>
+      const TYPING_SPEED = 0.5;
+      const container = document.getElementById("eventsContainer");
+      if (container) {
+        container.addEventListener("mouseover", (e) => {
+          const card = e.target.closest(".theme-event-card");
+          if (!card) return;
+          const desc = card.querySelector(".event-desc");
+          if (!desc) return;
+          if (!desc.dataset.fullText) {
+            const rawText = desc.innerText.trim();
+            if (!rawText) return;
+            desc.dataset.fullText = rawText;
+            desc.innerText = "";
+          }
+          if (desc.classList.contains("is-typing")) return;
+          desc.classList.add("is-typing");
+          desc.classList.remove("finished-typing");
+          desc.innerText = "";
+          const textToType = desc.dataset.fullText;
+          let charIndex = 0;
+          function type() {
+            if (!card.matches(":hover")) return;
+            if (charIndex < textToType.length) {
+              desc.innerText += textToType.charAt(charIndex);
+              charIndex++;
+              desc.typingTimeout = setTimeout(type, TYPING_SPEED);
+            } else {
+              desc.classList.add("finished-typing");
+            }
+          }
+          type();
+        });
+        container.addEventListener("mouseout", (e) => {
+          const card = e.target.closest(".theme-event-card");
+          if (!card) return;
+          if (card.contains(e.relatedTarget)) return;
+          const desc = card.querySelector(".event-desc");
+          if (!desc) return;
+          clearTimeout(desc.typingTimeout);
+          desc.classList.remove("is-typing");
+          desc.classList.remove("finished-typing");
+          desc.innerText = "";
+        });
+      }
+    </script>
+    <script>
+      function signOut() {
+        localStorage.removeItem("auth_token");
+        localStorage.clear();
+        window.location.href = "../../index.html";
+      }
+    </script>
+  </body>
+</html>
