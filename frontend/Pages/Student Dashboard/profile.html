@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCEP | Student Profile</title>
+    <link rel="icon" type="image/png" href="../../Data/Images/logo.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="../../Loader/loader.css" />
+  </head>
+  <body>
+    <div id="loader-wrapper">
+      <img id="loader-logo" src="../../Data/Images/logo.png" alt="Logo" />
+      <div class="progress-container"><div class="progress-bar"></div></div>
+    </div>
+    <script src="../../Loader/loader.js"></script>
+    <script src="../../config.js"></script>
+    <div id="vanta-bg"></div>
+
+    <nav>
+      <div class="nav-left">
+        <a href="dashboard.html">
+          <img src="../../Data/Images/logo.png" alt="Logo" class="logo" />
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="dashboard.html">Home</a>
+        <a href="#" onclick="signOut()">Sign Out</a>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <main>
+        <div class="profile-card">
+          <div class="profile-title">Student Profile</div>
+
+          <div class="profile-info">
+            <div class="profile-row">
+              <span><b>Name</b></span>
+              <span id="studentName">Loading...</span>
+            </div>
+
+            <div class="profile-row">
+              <span><b>Email</b></span>
+              <span id="studentEmail">...</span>
+            </div>
+
+            <div class="profile-row">
+              <span><b>USN</b></span>
+              <span id="studentUSN">...</span>
+            </div>
+
+            <div class="profile-row">
+              <span><b>Branch</b></span>
+              <span id="studentBranch">...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="events-container">
+          <h2>Registered Events</h2>
+          <div id="registeredEvents"></div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-header">
+          <img src="../../Data/Images/logo.png" alt="Logo" class="logo" />
+
+          <p>BMSCE Club Events</p>
+        </div>
+        <p>
+          Empowering student communities through collaboration, innovation, and
+          creativity.
+        </p>
+        <p>© 2025 BMSCE Club Events. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+    <script>
+      let vantaEffect = VANTA.FOG({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        highlightColor: 0x0,
+        midtoneColor: 0xc5ff,
+        lowlightColor: 0x9400ff,
+        baseColor: 0x0,
+        speed: 1.0,
+        zoom: 0.7,
+      });
+
+      window.addEventListener("resize", () => {
+        if (vantaEffect) vantaEffect.resize();
+      });
+    </script>
+
+    <script>
+      const BASE_URL = `${window.API_BASE_URL}`;
+
+      async function loadProfile() {
+        const token = localStorage.getItem("auth_token");
+
+        if (!token) {
+          window.location.href = "../Student Login/login.html";
+          return;
+        }
+
+        try {
+          const res = await apiFetch("/auth/profile", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!res.ok) throw new Error("Unauthorized");
+
+          const data = await res.json();
+          document.getElementById("studentName").textContent = data.name;
+          document.getElementById("studentEmail").textContent = data.email;
+          document.getElementById("studentUSN").textContent = data.usn;
+          document.getElementById("studentBranch").textContent =
+            data.branchFull || data.branch;
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      async function loadRegisteredEvents() {
+        const token = localStorage.getItem("auth_token");
+
+        try {
+          const res = await apiFetch("/auth/registered-events", {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          const events = await res.json();
+          const container = document.getElementById("registeredEvents");
+
+          if (!events || events.length === 0) {
+            container.innerHTML = `<p style="text-align:center; opacity:0.7; margin-top:20px;">No registered events yet.</p>`;
+            return;
+          }
+
+          container.innerHTML = events
+            .map((ev) => {
+              let dateStr = "TBA";
+              if (ev.eventDateTime) {
+                const dt = new Date(ev.eventDateTime);
+                dateStr = dt.toLocaleString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
+              } else {
+                dateStr = new Date(ev.deadline).toDateString();
+              }
+
+              return `
+              <div class="event-card">
+                <div class="event-title">${ev.title}</div>
+                <div class="event-meta"><b>Event Date:</b> ${dateStr}</div>
+                <div class="event-meta"><b>Venue:</b> ${ev.venue || "TBA"}</div>
+              </div>`;
+            })
+            .join("");
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      (async () => {
+        try {
+          await Promise.all([loadProfile(), loadRegisteredEvents()]);
+        } catch (error) {
+          console.error("Error loading page data", error);
+        } finally {
+          if (window.hideCustomLoader) {
+            window.hideCustomLoader();
+          }
+        }
+      })();
+    </script>
+    <script>
+      function signOut() {
+        localStorage.removeItem("auth_token");
+        localStorage.clear();
+        window.location.href = "../../index.html";
+      }
+    </script>
+  </body>
+</html>
