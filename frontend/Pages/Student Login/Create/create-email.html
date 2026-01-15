@@ -384,6 +384,12 @@ a {
           return;
         }
 
+        if (!email.endsWith("@bmsce.ac.in")) {
+          msg.style.color = "red";
+          msg.textContent = "Use your @bmsce.ac.in email.";
+          return;
+        }
+
         btn.disabled = true;
         msg.style.color = "yellow";
         msg.textContent = "Sending OTP...";
