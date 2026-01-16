@@ -304,7 +304,7 @@ The API is organized into two primary arteries: Authentication and Event Managem
     PORT=3000
     MONGO_URI=your_mongodb_connection_string
     JWT_SECRET=your_secure_random_string
-    ADMIN_SECRET=rishi_is_cool
+    ADMIN_SECRET=admin_secret_string
     CLOUDINARY_URL=your_cloudinary_url
     EMAIL_USER=your_smtp_user
     EMAIL_PASS=your_smtp_app_password
