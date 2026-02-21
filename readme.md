@@ -318,11 +318,11 @@ The API is organized into two primary arteries: Authentication and Event Managem
 
 ---
 
-<p align="center">
+<!-- <p align="center">
   <a href="#bmsce-club-events-portal-bcep">Back to Top</a> • 
   <a href="https://github.com/not-rishi/BCEP/issues">Report Bug</a> • 
   <a href="https://github.com/not-rishi/BCEP/pulls">Request Feature</a>
-</p>
+</p> -->
 
 <table align="center">
   <tr>
